@@ -26,7 +26,7 @@ export function FiltersBox({priceRange, setPriceRange, fetchData} : FiltersBoxPr
                         },
                     },
                     '& .MuiSlider-track': {
-                        backgroundColor: '#b5b5b5',
+                        backgroundColor: '#ffffff',
                     },
                     '& .MuiSlider-rail': {
                         backgroundColor: '#373737',
