@@ -12,9 +12,9 @@ type CarCardProps = {
 export function CarCard({ id, image_path ,name, details, price }: CarCardProps) {
     return (
         <div className={styles.card}>
-            <Image className={styles.cardImage} src={image_path} alt={""} width={500} height={500} />
+            <Image className={styles.cardImage} src={image_path} alt={""} width={500} height={500}   loading="lazy" decoding="async" unoptimized/>
             <p className={styles.cardTitle}>{name}</p>
-            {/*<p className={styles.cardDetail}>{details}</p>*/}
+            <p className={styles.cardDetail}>{details}</p>
             <p className={styles.cardPrice}>$ {price}</p>
         </div>
     );

@@ -15,18 +15,21 @@
     cursor: pointer;
 
     .cardTitle {
-      transform: translateY(-650%);
+      top: 10%;
     }
 
     .cardImage {
       filter: brightness(0.4) blur(5px);
     }
 
+    .cardDetail {
+      opacity: 1;
+      top: 32%;
+    }
+
     .cardPrice {
       opacity: 1;
       top: 75%;
-      font-size: x-large;
-      font-weight: bold;
     }
   }
 }
@@ -40,12 +43,27 @@
 
 .cardTitle{
   position: absolute;
-  bottom: 15%;
+  top: 70%;
   height: 10%;
   width: 80%;
   font-weight: bold;
   font-size: x-large;
   text-shadow: #0a0a0a 0 0 15px;
+
+  transition: all 0.2s;
+}
+
+.cardDetail{
+  position: absolute;
+  top: 100%;
+  left: 10%;
+  opacity: 0;
+  height: 25%;
+  width: 60%;
+  text-shadow: #0a0a0a 0 0 15px;
+
+  font-size: large;
+  font-weight: 500;
 
   transition: all 0.2s;
 }
@@ -58,6 +76,9 @@
   width: 80%;
   text-shadow: #0a0a0a 0 0 15px;
   text-align: right;
+  font-size: x-large;
+  font-weight: bold;
 
   transition: all 0.2s;
 }
+
