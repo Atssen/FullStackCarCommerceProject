@@ -1,0 +1,34 @@
+.cardSkeleton1 {
+  background-color: #151515;
+  margin: 1.6vw;
+  border-radius: 1.5rem;
+  position: relative;
+  height: 15vw;
+  width: 25vw;
+
+  animation: glow-pulse 1s ease-in-out infinite;
+}
+
+.cardSkeleton2 {
+  composes: cardSkeleton1;
+  height: 16vw;
+}
+
+.cardSkeleton3 {
+  composes: cardSkeleton1;
+  height: 17vw;
+}
+
+@keyframes glow-pulse {
+  0%{
+    filter: brightness(0);
+  }
+
+  50%{
+    filter: brightness(1);
+  }
+
+  100%{
+    filter: brightness(0);
+  }
+}

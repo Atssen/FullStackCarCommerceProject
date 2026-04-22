@@ -1,0 +1,78 @@
+.carTitle{
+  margin: 0 auto;
+  height: 10vw;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 5vw;
+}
+
+.carImage{
+  margin: 0 auto;
+  height: 35vw;
+  width: 80vw;
+}
+
+.carDetails{
+  margin: 5vw auto 0;
+  height: 10vw;
+  width: 60%;
+  text-align: center;
+  font-weight: 500;
+  font-size: 2vw;
+}
+
+.carPrice{
+  margin: 5vw auto 0;
+  height: 10vw;
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
+  font-size: 2vw;
+}
+
+.titleSkeleton {
+  background-color: #151515;
+  border-radius: 1.5rem;
+  position: relative;
+  margin: 1vw auto;
+  height: 10vw;
+  width: 60%;
+
+  animation: glow-pulse 1s ease-in-out infinite;
+}
+
+.imageSkeleton {
+  background-color: #151515;
+  border-radius: 1.5rem;
+  position: relative;
+  margin: 1vw auto;
+  height: 35vw;
+  width: 80vw;
+
+  animation: glow-pulse 1s ease-in-out infinite;
+}
+
+.detailsSkeleton {
+  background-color: #151515;
+  border-radius: 1.5rem;
+  position: relative;
+  margin: 5vw auto;
+  height: 10vw;
+  width: 60%;
+  animation: glow-pulse 1s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%{
+    filter: brightness(0);
+  }
+
+  50%{
+    filter: brightness(1);
+  }
+
+  100%{
+    filter: brightness(0);
+  }
+}

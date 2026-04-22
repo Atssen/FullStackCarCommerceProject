@@ -1,0 +1,47 @@
+.topbar{
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 7vw;
+
+  .links{
+    position: absolute;
+    left: 17%;
+    display: flex;
+    gap: 2rem;
+    font-weight: 500;
+  }
+
+  .searchBar{
+    position: absolute;
+    left: 40%;
+    background-color: #0e0e0e;
+    width: 20%;
+    height: 50%;
+    border-radius: 1vw;
+    text-align: center;
+    align-content: center;
+    border: #323131 solid 1.3px;
+    color: #6a6a6a;
+  }
+
+  .button{
+    position: absolute;
+    background-color: #1e1e1e;
+    border-radius: 1vw;
+    height: 50%;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+    &:hover{
+      box-shadow: 0 0 10px 5px rgba(0, 0, 0, 1);
+    }
+
+    .image{
+      filter: invert(100%);
+      opacity: 0.6;
+      aspect-ratio: 1/1;
+    }
+  }
+
+}
