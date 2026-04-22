@@ -1,7 +1,13 @@
 import styles from "./FiltersBox.module.scss";
 import Slider from '@mui/material/Slider';
 
-export function FiltersBox({priceRange, setPriceRange, fetchData}) {
+type FiltersBoxProps = {
+    priceRange : number[];
+    setPriceRange : (priceRange : number[]) => void;
+    fetchData : () => Promise<void>;
+}
+
+export function FiltersBox({priceRange, setPriceRange, fetchData} : FiltersBoxProps) {
     const handleChange = (event: Event, newValue: number[]) => {
         setPriceRange(newValue);
     };
