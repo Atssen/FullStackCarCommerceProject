@@ -5,7 +5,11 @@ import {use, useEffect, useState} from "react";
 import Image from "next/image";
 import styles from "./CarPage.module.scss";
 
-export default function CarPage({params}){
+type Params = {
+    carID: string;
+};
+
+export default function CarPage({ params }: { params: Promise<Params> }) {
 
     const resolvedParams = use(params);
     const id = resolvedParams.carID;
