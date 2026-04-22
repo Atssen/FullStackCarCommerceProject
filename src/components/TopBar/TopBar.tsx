@@ -16,11 +16,11 @@ export function TopBar() {
 
                 <div className={styles.searchBar}> Search for cars </div>
 
-                <button className={`${styles.button} items-center justify-items-center right-[10%]`}>
+                <button className={`${styles.button} right-[10%]`}>
                     <Image src={"/shopping-bag.png"} className={styles.image} alt={""} width={32} height={32} />
                 </button>
 
-                <button className={`${styles.button} items-center justify-items-center right-[5%]`}>
+                <button className={`${styles.button} right-[5%]`}>
                     <Image src={"/avatar.png"} className={`${styles.image} w-[60%]`} alt={""} width={32} height={32} />
                 </button>
 

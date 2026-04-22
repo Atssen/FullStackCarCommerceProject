@@ -5,7 +5,7 @@ import {LandingImage} from "@/src/components/LandingImage/LandingImage";
 export default function Home()
 {
     return (
-        <div className={"justify-items-center"}>
+        <div className={"flex flex-col items-center"}>
             <LandingImage />
 
             <div className={"grid grid-cols-2 mt-10"}>

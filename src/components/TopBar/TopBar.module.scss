@@ -33,6 +33,11 @@
     height: 50%;
     aspect-ratio: 1/1;
     cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     &:hover{
       box-shadow: 0 0 10px 5px rgba(0, 0, 0, 1);
     }
