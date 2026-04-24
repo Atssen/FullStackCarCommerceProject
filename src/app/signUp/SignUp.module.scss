@@ -1,0 +1,74 @@
+.panel{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+  h1{
+    font-weight: bold;
+    font-size: 3vw;
+  }
+
+  label{
+    width: 30vw;
+    margin-left: 0.5vw;
+    margin-bottom: 0.5vw;
+  }
+
+  input{
+    height: 3vw;
+    width: 30vw;
+    background-color: #0a0a0a;
+    color: white;
+    padding: 1vw;
+
+    border-color: #474747;
+    border-style: solid;
+    border-width: 2px;
+
+    margin-bottom: 2vw;
+  }
+
+
+  .hideButton{
+    width: 5vw;
+    height: 3vw;
+    padding: 1vw;
+
+    border-color: #474747;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5vw;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.2vw;
+  }
+
+  .createAccountButton{
+    width: 26vw;
+    height: 3vw;
+    padding: 1vw;
+
+    background-color: #ededed;
+    color: black;
+
+    //border-color: #474747;
+    //border-style: solid;
+    //border-width: 2px;
+    border-radius: 5vw;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.2vw;
+  }
+}
+
