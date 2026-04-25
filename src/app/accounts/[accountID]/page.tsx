@@ -1,6 +1,6 @@
 "use client"
 
-import {supabase} from "@/utils/supabase/client";
+import {supabase} from "@/utils/supabase/functions/client";
 import {use, useEffect, useState} from "react";
 import Image from "next/image";
 import styles from "./CarPage.module.scss";

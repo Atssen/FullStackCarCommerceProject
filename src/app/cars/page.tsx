@@ -1,11 +1,10 @@
 "use client"
-import {supabase} from "@/utils/supabase/client";
+import {supabase} from "@/utils/supabase/functions/client";
 import {useEffect, useState} from "react";
 import {CarCard} from "@/src/components/CarCard/CarCard";
 import Masonry from "react-masonry-css";
 import {FiltersBox} from "@/src/components/FiltersBox/FiltersBox";
 import {CarsSkeleton} from "@/src/components/CarsSkeleton/CarsSkeleton";
-import {usePathname, useRouter} from "next/navigation";
 import {OrderFactors} from "@/src/enums/orderFactors";
 import {CardViewSelectors} from "@/src/components/CardViewSelectors/CardViewSelectors";
 

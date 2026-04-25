@@ -23,7 +23,7 @@ export function TopBar() {
 
                 <div className={styles.searchBar}> <p>Search for cars</p> </div>
 
-                <button className={styles.signInButton} onClick={() => router.push('/signUp')}> Sign In </button>
+                <button className={styles.signInButton} onClick={() => router.push('/login')}> Sign In </button>
 
                 {/*<button className={`${styles.button} right-[10%]`}>*/}
                 {/*    <Image src={"/shopping-bag.png"} className={styles.image} alt={""} width={32} height={32} />*/}
