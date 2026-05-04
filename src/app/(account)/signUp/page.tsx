@@ -3,8 +3,11 @@ import styles from "./SignUp.module.scss";
 import {useState} from "react";
 import Image from "next/image";
 import {CountryDropdown} from "react-country-region-selector";
-import {createAccount} from "@/utils/supabase/functions/createAccount";
 import Link from "next/link";
+import {useRouter} from "next/navigation";
+import {supabase} from "@/utils/supabase/functions/client";
+import {toast} from "sonner";
+import {useSignup} from "@/utils/functions/signUpStore";
 
 export default function SignUpPage()
 {
@@ -15,6 +18,12 @@ export default function SignUpPage()
     const [country, setCountry] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const router = useRouter();
+
+    const [loading, setLoading] = useState(false);
+
+    const { setData } = useSignup();
 
     return (
         <div className={styles.panel}>
@@ -46,18 +55,37 @@ export default function SignUpPage()
             <div className={"mt-[2vw]"}></div>
 
             <button className={styles.createAccountButton} onClick={
-                async () => {
-                    await createAccount({
-                        name,
-                        surname,
-                        country,
-                        email,
-                        password,
-                    })
+                    async () => {
+                        setLoading(true);
+
+                        setData({
+                            email,
+                            password,
+                            name,
+                            surname,
+                            country,
+                        });
+
+                        const { error:otpSignInError } = await supabase.auth.signInWithOtp({email});
+
+                        if (otpSignInError) {
+                            console.error(otpSignInError.message);
+                            toast.error(otpSignInError.message);
+                            setLoading(false);
+                            return;
+                        }
+
+                        router.push("/verification");
+                    }
                 }
-            }
+                disabled={loading}
             >
-                Create your account
+                {
+                    loading ? <div className={styles.loader}></div>
+                        :
+                        "Create your account"
+                }
+
             </button>
 
             <div className={"mt-[2vw]"}></div>

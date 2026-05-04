@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import {TopBar} from "@/src/components/TopBar/TopBar";
 import {ReactNode} from "react";
+import {Toaster} from "sonner";
+import {SignupProvider} from "@/utils/functions/signUpStore";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,8 +18,11 @@ export default function RootLayout({children} : {children: ReactNode})
       className={`h-full antialiased scrollbar-gutter-stable`}
     >
       <body className="min-h-full flex flex-col">
-        <TopBar />
-        {children}
+        <SignupProvider>
+          <TopBar />
+          <Toaster theme={"dark"} duration={2000} />
+          {children}
+        </SignupProvider>
       </body>
     </html>
   );

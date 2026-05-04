@@ -1,10 +1,11 @@
 "use client"
-import styles from "./login.module.scss";
+import styles from "./Login.module.scss";
 import {useState} from "react";
 import Image from "next/image";
-import {CountryDropdown} from "react-country-region-selector";
-import {createAccount} from "@/utils/supabase/functions/createAccount";
 import Link from "next/link";
+import {useRouter} from "next/navigation";
+import {supabase} from "@/utils/supabase/functions/client";
+import {toast} from "sonner";
 
 export default function LoginPage()
 {
@@ -12,6 +13,10 @@ export default function LoginPage()
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const router = useRouter();
+
+    const [loading, setLoading] = useState(false);
 
     return (
         <div className={styles.panel}>
@@ -32,22 +37,33 @@ export default function LoginPage()
             </div>
 
             <button className={styles.createAccountButton} onClick={
-                async () => {
-                    const res = await fetch("/api/login", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            email: email,
-                            password: password,
-                        }),
-                    });
+                        async () => {
 
-                    const data = await res.json();
-                    console.log(data);
-                }
-            }
+                            setLoading(true);
+
+                            const { error:signInError } = await supabase.auth.signInWithPassword({
+                                email,
+                                password,
+                            });
+
+                            if (signInError) {
+                                console.error(signInError.message);
+                                toast.error(signInError.message);
+                                setLoading(false);
+                                return;
+                            }
+
+                            router.push(`/profile`);
+                        }
+                    }
+
+                    disabled={loading}
             >
-                Log In
+                {
+                    loading ? <div className={styles.loader}></div>
+                    :
+                    "Log In"
+                }
             </button>
 
             <div className={"mt-[2vw]"}></div>
