@@ -45,23 +45,25 @@ export default function CarPage({ params }: { params: Promise<Params> }) {
         fetchData();
     }, []);
 
-
     return(
         <>
             {
                 loading ? (
-                    <div className={"m-auto flex flex-col items-center justify-center gap-2"}>
-                        <div className={styles.titleSkeleton}></div>
-                        <div className={styles.imageSkeleton}></div>
-                        <div className={styles.detailsSkeleton}></div>
+                    <div className={styles.carGrid}>
+                        <div className={styles.titleSkeleton} />
+                        <div className={styles.imageSkeleton} />
+                        <div className={styles.detailsSkeleton} />
+                        <div className={styles.priceSkeleton} />
                     </div>
                 ) :
                 (
                     <>
-                        <div className={styles.carTitle}>{data[0].name}</div>
-                        <Image className={styles.carImage} src={data[0].image_path} width={1000} height={1000} alt={""} />
-                        <div className={styles.carDetails}>{data[0].details}</div>
-                        <div className={styles.carPrice}>${data[0].price}</div>
+                        <div className={styles.carGrid}>
+                            <div className={styles.carTitle}>{data[0].name}</div>
+                            <Image className={styles.carImage} src={data[0].image_path} width={500} height={500} alt={""} />
+                            <div className={styles.carDetails}>{data[0].details}</div>
+                            <div className={styles.carPrice}>${data[0].price}</div>
+                        </div>
                     </>
                 )
             }

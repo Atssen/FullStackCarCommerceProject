@@ -1,3 +1,4 @@
+@import '@clerk/ui/themes/shadcn.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -19,6 +20,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+body[style*="padding-right"] {
+  padding-right: 0 !important;
+}
+
 @layer base {
   p::selection {
     background: white;
@@ -30,4 +35,38 @@ body {
   .scrollbar-gutter-stable {
     scrollbar-gutter: stable;
   }
+}
+
+.cl-modalBackdrop {
+  overflow: hidden !important;
+  -ms-overflow-style: none;  /* IE/Edge */
+  scrollbar-width: none;     /* Firefox */
+  display: flex;
+}
+
+/* Hide scrollbar but keep scrolling */
+.cl-modalBackdrop::-webkit-scrollbar {
+  display: none;
+}
+
+.cl-cardBox {
+  margin-top: 4vh;
+  align-self: center;
+  height: 35vw;
+}
+
+button{
+  &:active{
+    outline: none;
+    box-shadow: none;
+    border: none;
+  }
+}
+
+.cl-userButtonTrigger,
+.cl-userButtonTrigger * {
+  animation: none !important;
+  transition: none !important;
+  box-shadow: none !important;
+  border: none;
 }

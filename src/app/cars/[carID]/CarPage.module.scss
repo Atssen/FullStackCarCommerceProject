@@ -1,31 +1,47 @@
+.carGrid{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* REQUIRED */
+  grid-template-rows: repeat(4, 1fr);
+  justify-items: stretch;
+  align-items: stretch;
+  height: 37vw;
+  gap: 1rem;
+  margin: 2vw;
+
+  grid-template-areas:
+    "carImage carImage carImage carDetails carDetails"
+    "carImage carImage carImage carDetails carDetails"
+    "carImage carImage carImage carDetails carDetails"
+    "carTitle carTitle carTitle carPrice  carPrice ";
+}
+
+
 .carTitle{
-  margin: 0 auto;
-  height: 10vw;
   width: 100%;
+  grid-area: carTitle;
   text-align: center;
   font-weight: bold;
   font-size: 5vw;
 }
 
 .carImage{
-  margin: 0 auto;
-  height: 35vw;
-  width: 80vw;
+  width: 100%;
+  grid-area: carImage;
 }
 
 .carDetails{
-  margin: 5vw auto 0;
-  height: 10vw;
-  width: 60%;
+  width: 70%;
+  grid-area: carDetails;
   text-align: center;
   font-weight: 500;
   font-size: 2vw;
+  align-self: center;
+  justify-self: center;
 }
 
 .carPrice{
-  margin: 5vw auto 0;
-  height: 10vw;
   width: 100%;
+  grid-area: carPrice;
   text-align: center;
   font-weight: 600;
   font-size: 2vw;
@@ -34,10 +50,8 @@
 .titleSkeleton {
   background-color: #151515;
   border-radius: 1.5rem;
-  position: relative;
-  margin: 1vw auto;
-  height: 10vw;
-  width: 60%;
+  width: 100%;
+  grid-area: carTitle;
 
   animation: glow-pulse 1s ease-in-out infinite;
 }
@@ -45,10 +59,8 @@
 .imageSkeleton {
   background-color: #151515;
   border-radius: 1.5rem;
-  position: relative;
-  margin: 1vw auto;
-  height: 35vw;
-  width: 80vw;
+  width: 100%;
+  grid-area: carImage;
 
   animation: glow-pulse 1s ease-in-out infinite;
 }
@@ -56,10 +68,18 @@
 .detailsSkeleton {
   background-color: #151515;
   border-radius: 1.5rem;
-  position: relative;
-  margin: 5vw auto;
-  height: 10vw;
-  width: 60%;
+  width: 100%;
+  grid-area: carDetails;
+
+  animation: glow-pulse 1s ease-in-out infinite;
+}
+
+.priceSkeleton {
+  background-color: #151515;
+  border-radius: 1.5rem;
+  width: 100%;
+  grid-area: carPrice;
+
   animation: glow-pulse 1s ease-in-out infinite;
 }
 

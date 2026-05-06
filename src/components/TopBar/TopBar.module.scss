@@ -82,18 +82,25 @@
     }
   }
 
-  .signInButton{
-    position: absolute;
-    background-color: #1e1e1e;
-    border-radius: 1vw;
-    height: 50%;
-    aspect-ratio: 2/1;
-    cursor: pointer;
-
-    right: 5%;
-
+  .signButtonsContainer{
     display: flex;
+    position: absolute;
+    height: 100%;
+    align-items: center;
+    right: 5%;
+    gap: 2vw;
+  }
+
+  .signButton{
+    background-color: #151515;
+    box-shadow: rgba(0, 0, 0, 0.06) 0 0 15px 15px;
+    border-radius: 1vw;
+    height: 40%;
+    aspect-ratio: 3/1;
+    cursor: pointer;
     align-items: center;
     justify-content: center;
+
+    transition: all 0.2s ease-in-out;
   }
 }

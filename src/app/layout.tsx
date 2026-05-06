@@ -4,6 +4,8 @@ import {TopBar} from "@/src/components/TopBar/TopBar";
 import {ReactNode} from "react";
 import {Toaster} from "sonner";
 import {SignupProvider} from "@/utils/functions/signUpStore";
+import { ClerkProvider, Show, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs'
+import {dark, shadcn} from '@clerk/ui/themes'
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,17 +15,23 @@ export const metadata: Metadata = {
 export default function RootLayout({children} : {children: ReactNode})
 {
   return (
-    <html
-      lang="en"
-      className={`h-full antialiased scrollbar-gutter-stable`}
+    <ClerkProvider
+        appearance={{
+            theme: dark,
+        }}
     >
-      <body className="min-h-full flex flex-col">
-        <SignupProvider>
-          <TopBar />
-          <Toaster theme={"dark"} duration={2000} />
-          {children}
-        </SignupProvider>
-      </body>
-    </html>
+      <html
+        lang="en"
+        className={`h-full antialiased scrollbar-gutter-stable`}
+      >
+        <body className="min-h-full flex flex-col">
+            <SignupProvider>
+              <TopBar />
+              <Toaster theme={"dark"} duration={2000} />
+              {children}
+            </SignupProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
