@@ -20,10 +20,11 @@ export default function CarPage({ params }: { params: Promise<Params> }) {
         name: string;
         details: string;
         price: number;
+        extended_details: string;
+        tags: string;
     };
 
     async function fetchData() {
-        setLoading(true);
 
         const { data, error } = await supabase
             .from('cars')
@@ -33,11 +34,13 @@ export default function CarPage({ params }: { params: Promise<Params> }) {
         if (error) console.error(error)
         else setData(data)
 
-        setLoading(false);
         console.log(data);
+
+        setDataLoading(false);
     }
 
-    const [loading, setLoading] = useState(true);
+    const [dataLoading, setDataLoading] = useState(true);
+    const [imageLoading, setImageLoading] = useState(true);
     const [data, setData] = useState<Car[]>([]);
 
 
@@ -47,26 +50,30 @@ export default function CarPage({ params }: { params: Promise<Params> }) {
 
     return(
         <>
-            {
-                loading ? (
-                    <div className={styles.carGrid}>
-                        <div className={styles.titleSkeleton} />
-                        <div className={styles.imageSkeleton} />
-                        <div className={styles.detailsSkeleton} />
-                        <div className={styles.priceSkeleton} />
-                    </div>
-                ) :
-                (
-                    <>
-                        <div className={styles.carGrid}>
-                            <div className={styles.carTitle}>{data[0].name}</div>
-                            <Image className={styles.carImage} src={data[0].image_path} width={500} height={500} alt={""} />
-                            <div className={styles.carDetails}>{data[0].details}</div>
-                            <div className={styles.carPrice}>${data[0].price}</div>
-                        </div>
-                    </>
-                )
-            }
+            <div className={styles.carGrid}>
+                <div className={`${styles.titleSkeleton} ${imageLoading ? "" : "hidden"}`} />
+                <div className={`${styles.imageSkeleton} ${imageLoading ? "" : "hidden"}`} />
+                <div className={`${styles.detailsSkeleton} ${imageLoading ? "" : "hidden"}`} />
+                <div className={`${styles.priceSkeleton} ${imageLoading ? "" : "hidden"}`} />
+
+                {
+                    !dataLoading &&
+                    (
+                        <>
+
+                            <div className={styles.titleSection}>
+                                <div className={`${styles.carTitle} ${imageLoading ? "hidden" : ""}`}>{data[0].name}</div>
+
+                                <button className={styles.button}>Buy Now</button>
+                            </div>
+
+                            <Image className={`${styles.carImage} ${imageLoading ? "opacity-0 w-0 h-0" : ""}`} src={data[0].image_path} onLoad={() => setImageLoading(false)} width={500} height={500} alt={""} />
+                            <div className={`${styles.carDetails} ${imageLoading ? "hidden" : ""}`}>{data[0].extended_details}</div>
+                            <div className={`${styles.carPrice} ${imageLoading ? "hidden" : ""}`}>${data[0].price}</div>
+                        </>
+                    )
+                }
+            </div>
         </>
     )
 }

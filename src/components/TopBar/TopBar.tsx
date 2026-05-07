@@ -3,9 +3,37 @@ import styles from "./TopBar.module.scss"
 import Link from "next/link";
 import Image from "next/image";
 import {Show, SignInButton, SignUpButton, UserButton, useUser} from "@clerk/nextjs";
+import { Meilisearch } from "meilisearch";
+import {useEffect, useState} from "react";
 
 
 export function TopBar() {
+
+    // const [searchResults, setSearchResults] = useState([]);
+    //
+    // const client = new Meilisearch({
+    //     host: "https://meilisearch-production-89d8.up.railway.app",
+    //     apiKey: "6Sm06lvAotaYMT0izLEsSCUOHJ7xvzHU",
+    // });
+    //
+    // const carsIndex = client.index("cars");
+    //
+    // async function getSearchResults(query : string) {
+    //
+    //     const results = await carsIndex.search(query, {
+    //         limit: 20,
+    //         attributesToHighlight: ["name", "details", "tags"],
+    //     });
+    //
+    //     console.log(results.hits);
+    //
+    //     // setSearchResults(results.hits);
+    // }
+    //
+    // useEffect(() => {
+    //     getSearchResults("Blue");
+    // }, [])
+
 
     const { isLoaded, isSignedIn } = useUser();
 
@@ -60,10 +88,6 @@ export function TopBar() {
 
                 {/*<button className={`${styles.button} right-[10%]`}>*/}
                 {/*    <Image src={"/shopping-bag.png"} className={styles.image} alt={""} width={32} height={32} />*/}
-                {/*</button>*/}
-
-                {/*<button className={`${styles.button} right-[5%]`}>*/}
-                {/*    <Image src={"/avatar.png"} className={styles.image} alt={""} width={32} height={32} />*/}
                 {/*</button>*/}
 
             </div>

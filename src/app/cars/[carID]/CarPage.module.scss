@@ -4,7 +4,7 @@
   grid-template-rows: repeat(4, 1fr);
   justify-items: stretch;
   align-items: stretch;
-  height: 37vw;
+  height: 35vw;
   gap: 1rem;
   margin: 2vw;
 
@@ -15,28 +15,37 @@
     "carTitle carTitle carTitle carPrice  carPrice ";
 }
 
-
-.carTitle{
+.titleSection{
   width: 100%;
   grid-area: carTitle;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.carTitle{
   text-align: center;
   font-weight: bold;
-  font-size: 5vw;
+  font-size: 4vw;
 }
 
 .carImage{
-  width: 100%;
+  width: 90%;
+  justify-self: center;
   grid-area: carImage;
 }
 
 .carDetails{
   width: 70%;
+  height: 80%;
   grid-area: carDetails;
   text-align: center;
   font-weight: 500;
   font-size: 2vw;
   align-self: center;
   justify-self: center;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .carPrice{
@@ -81,6 +90,20 @@
   grid-area: carPrice;
 
   animation: glow-pulse 1s ease-in-out infinite;
+}
+
+.button{
+  background-color: #1e1e1e;
+  border-radius: 1vw;
+  height: 50%;
+  aspect-ratio: 4/1;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1.5vw;
+
+  &:hover{
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 1);
+  }
 }
 
 @keyframes glow-pulse {

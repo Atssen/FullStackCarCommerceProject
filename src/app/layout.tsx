@@ -22,7 +22,8 @@ export default function RootLayout({children} : {children: ReactNode})
     >
       <html
         lang="en"
-        className={`h-full antialiased scrollbar-gutter-stable`}
+        className="h-full antialiased scrollbar-gutter-stable dsbleeoc idc0_350"
+        // I honestly do not know what these last classnames are
       >
         <body className="min-h-full flex flex-col">
             <SignupProvider>
