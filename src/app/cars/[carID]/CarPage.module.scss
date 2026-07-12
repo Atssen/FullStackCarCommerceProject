@@ -12,21 +12,22 @@
     "carImage carImage carImage carDetails carDetails"
     "carImage carImage carImage carDetails carDetails"
     "carImage carImage carImage carDetails carDetails"
-    "carTitle carTitle carTitle carPrice  carPrice ";
+    "carTitle carTitle carTitle carBuy     carBuy ";
 }
 
 .titleSection{
   width: 100%;
   grid-area: carTitle;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
 .carTitle{
   text-align: center;
   font-weight: bold;
-  font-size: 4vw;
+  font-size: 3vw;
+  width: 100%;
 }
 
 .carImage{
@@ -44,14 +45,13 @@
   font-size: 2vw;
   align-self: center;
   justify-self: center;
-  overflow-x: hidden;
-  overflow-y: scroll;
 }
 
 .carPrice{
+  box-sizing: border-box;
   width: 100%;
-  grid-area: carPrice;
-  text-align: center;
+  text-align: right;
+  padding-right: 5vw;
   font-weight: 600;
   font-size: 2vw;
 }
@@ -87,19 +87,20 @@
   background-color: #151515;
   border-radius: 1.5rem;
   width: 100%;
-  grid-area: carPrice;
+  grid-area: carBuy;
 
   animation: glow-pulse 1s ease-in-out infinite;
 }
 
 .button{
   background-color: #1e1e1e;
-  border-radius: 1vw;
   height: 50%;
-  aspect-ratio: 4/1;
+  aspect-ratio: 6/1;
+  margin: auto auto 7%;
   cursor: pointer;
   font-weight: 500;
   font-size: 1.5vw;
+  grid-area: carBuy;
 
   &:hover{
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 1);

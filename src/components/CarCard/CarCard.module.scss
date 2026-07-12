@@ -4,7 +4,7 @@
   align-items: center;
   background-color: #151515;
   margin: 1.6vw;
-  border-radius: 1.5rem;
+  //border-radius: 1.5rem;
   overflow: hidden;
   transition: all 0.2s;
   position: relative;
@@ -34,7 +34,7 @@
 
 .cardImage{
   height: 100%;
-  width: 25vw;
+  width: 35vw;
 
   transition: all 0.2s;
 }
@@ -45,7 +45,7 @@
   height: 10%;
   width: 80%;
   font-weight: bold;
-  font-size: x-large;
+  font-size: 28px;
   text-shadow: #0a0a0a 0 0 15px;
 
   transition: all 0.2s;
@@ -61,7 +61,7 @@
   text-shadow: #0a0a0a 0 0 15px;
 
 
-  font-size: large;
+  font-size: 22px;
   font-weight: 500;
   line-height: 130%;
 

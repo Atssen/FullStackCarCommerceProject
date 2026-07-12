@@ -14,16 +14,6 @@ export default function CarPage({ params }: { params: Promise<Params> }) {
     const resolvedParams = use(params);
     const id = resolvedParams.carID;
 
-    type Car = {
-        id: number;
-        image_path: string;
-        name: string;
-        details: string;
-        price: number;
-        extended_details: string;
-        tags: string;
-    };
-
     async function fetchData() {
 
         const { data, error } = await supabase
@@ -64,12 +54,12 @@ export default function CarPage({ params }: { params: Promise<Params> }) {
                             <div className={styles.titleSection}>
                                 <div className={`${styles.carTitle} ${imageLoading ? "hidden" : ""}`}>{data[0].name}</div>
 
-                                <button className={styles.button}>Buy Now</button>
+                                <div className={`${styles.carPrice} ${imageLoading ? "hidden" : ""}`}>$ {data[0].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}</div>
                             </div>
 
                             <Image className={`${styles.carImage} ${imageLoading ? "opacity-0 w-0 h-0" : ""}`} src={data[0].image_path} onLoad={() => setImageLoading(false)} width={500} height={500} alt={""} />
-                            <div className={`${styles.carDetails} ${imageLoading ? "hidden" : ""}`}>{data[0].extended_details}</div>
-                            <div className={`${styles.carPrice} ${imageLoading ? "hidden" : ""}`}>${data[0].price}</div>
+                            <div className={`${styles.carDetails} ${imageLoading ? "hidden" : ""}`}>{"Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus."}</div>
+                            <button className={styles.button}>Buy Now</button>
                         </>
                     )
                 }

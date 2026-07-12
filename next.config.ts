@@ -4,7 +4,8 @@ const nextConfig: NextConfig = {
     images: {
         domains: ["www.topgear.com", "source.unsplash.com", "upload.wikimedia.org"],
     },
-    allowedDevOrigins: ["192.168.113.166"],
+    // // Comment: Added the specific ngrok URL and a wildcard pattern so Next.js allows incoming HMR WebSocket connections from the tunnel
+    allowedDevOrigins: ["192.168.113.166", "unenthused-superexceptionally-kari.ngrok-free.dev", "*.ngrok-free.dev"],
 };
 
 export default nextConfig;

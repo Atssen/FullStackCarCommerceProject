@@ -22,7 +22,7 @@ export function CardViewSelectors({setOrderFactor, setIsAscending} : CardViewSel
                             break;
 
                         case "date_desc":
-                            setOrderFactor(OrderFactors.CREATION_DATE);
+                            setOrderFactor(OrderFactors.CREATION_DATE as keyof Car);
                             setIsAscending(false);
                             break;
 

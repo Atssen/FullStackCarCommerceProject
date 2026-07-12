@@ -10,7 +10,7 @@ import {CardViewSelectors} from "@/src/components/CardViewSelectors/CardViewSele
 
 export default function Cars() {
 
-    const [orderFactor, setOrderFactor] = useState<keyof Car>(OrderFactors.CREATION_DATE);
+    const [orderFactor, setOrderFactor] = useState<keyof Car>(OrderFactors.CREATION_DATE as keyof Car);
     const [isAscending, setIsAscending] = useState<boolean>(true);
 
 
@@ -90,7 +90,7 @@ export default function Cars() {
     };
 
       return (
-        <div className="flex font-sans gap-[10%]">
+        <div className="flex font-sans gap-[5%]">
 
             <FiltersBox priceRange={priceRange} setPriceRange={setPriceRange} fetchData={fetchData} />
 

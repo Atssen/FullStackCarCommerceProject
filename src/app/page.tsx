@@ -1,12 +1,13 @@
 import {InfoCard} from "@/src/components/InfoCard/InfoCard";
 import {PageFooter} from "@/src/components/PageFooter/PageFooter";
-import {LandingImage} from "@/src/components/LandingImage/LandingImage";
+import {LandingVideo} from "@/src/components/LandingImage/LandingVideo";
 
 export default function Home()
 {
     return (
         <div className={"flex flex-col items-center"}>
-            <LandingImage />
+
+            <LandingVideo />
 
             <div className={"grid grid-cols-2 mt-10"}>
                 <InfoCard imagePath={'/luxcar.webp'} title={"Best Quality"} description={"All the cars are made from the best materials and decorated with the most premium additions"} />

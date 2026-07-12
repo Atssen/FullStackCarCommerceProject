@@ -1,8 +1,9 @@
 type Car = {
     id: number;
-    created_at: string;
+    image_path: string;
     name: string;
     details: string;
     price: number;
-    image_path: string;
+    extended_details: string;
+    tags: string;
 };

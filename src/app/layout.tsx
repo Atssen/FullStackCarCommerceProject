@@ -15,24 +15,22 @@ export const metadata: Metadata = {
 export default function RootLayout({children} : {children: ReactNode})
 {
   return (
-    <ClerkProvider
-        appearance={{
-            theme: dark,
-        }}
+    <html
+      lang="en"
+      className="h-full antialiased scrollbar-gutter-stable"
+      // I honestly do not know what these last classnames are
     >
-      <html
-        lang="en"
-        className="h-full antialiased scrollbar-gutter-stable dsbleeoc idc0_350"
-        // I honestly do not know what these last classnames are
-      >
-        <body className="min-h-full flex flex-col">
-            <SignupProvider>
-              <TopBar />
-              <Toaster theme={"dark"} duration={2000} />
-              {children}
-            </SignupProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+      <body className="min-h-full flex flex-col">
+      <ClerkProvider
+          appearance={{
+              theme: dark,
+          }}>
+          <SignupProvider>
+            <TopBar />
+            <Toaster theme={"dark"} duration={2000} />
+            {children}
+          </SignupProvider>
+        </ClerkProvider></body>
+    </html>
   );
 }
