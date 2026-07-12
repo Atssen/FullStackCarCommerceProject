@@ -1,0 +1,34 @@
+{
+  "cards": [
+    {
+      "title": "Trail Ready",
+      "subText": "Rugged performance for off-road",
+      "bg-img": "/jeep-photo-1-8zjNycQC.avif"
+    },
+    {
+      "title": "City Comfort",
+      "subText": "Smooth ride with modern interior features",
+      "bg-img": "/jeep-photo-2-I9tszGyE.avif"
+    },
+    {
+      "title": "All-Terrain",
+      "subText": "Confident handling on any surface",
+      "bg-img": "/jeep-photo-3-C5sOEFWW.avif"
+    },
+    {
+      "title": "Adventure Built",
+      "subText": "Designed for mountains, mud, and sand",
+      "bg-img": "/jeep-photo-7-ktfXQLH6.avif"
+    },
+    {
+      "title": "Sunset Drives",
+      "subText": "Perfect for scenic routes and escapes",
+      "bg-img": "/jeep-sunset-view-optimized-k8tBFkha.webp"
+    },
+    {
+      "title": "Premium Fleet",
+      "subText": "Well-maintained Jeeps ready to rent",
+      "bg-img": "/hero-background-2-optimized-FTVjk1Nw.webp"
+    }
+  ]
+}

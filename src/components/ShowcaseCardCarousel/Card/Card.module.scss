@@ -1,0 +1,72 @@
+.card {
+  position: absolute;
+  //width: 70vw;
+  //height: 100%;
+  //border: 0.3vw solid rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+  display: inline-block;
+  //border-radius: 15px;
+
+
+  .imgWrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(26, 26, 26, 0.15);
+      //backdrop-filter: blur(1px);
+    }
+  }
+
+  .textSection{
+    height: auto;
+    width: 600px;
+
+    position: absolute;
+    top: 72%;
+    left: 4%;
+    text-shadow: 0 0 10px #000000;
+
+    .title{
+      font-weight: bold;
+      font-size: 40px;
+      font-family: "EB Garamond", serif;
+      color: white;
+      line-height: 1.2;
+    }
+
+    .subText{
+      font-weight: 500;
+      font-size: 2vw;
+      color: white;
+    }
+  }
+
+  .bookButton{
+    position: absolute;
+    width: 160px;
+    aspect-ratio: 3/1;
+    border-radius: 4px;
+    top: 78%;
+    right: 4%;
+    border: white 2.2px solid;
+    color: white;
+    transition: background-color 0.1s ease-in-out;
+
+    &:hover{
+      background-color: rgba(34, 34, 34, 0.87);
+
+    }
+  }
+
+}
