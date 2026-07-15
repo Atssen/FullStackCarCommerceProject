@@ -7,7 +7,7 @@ type CardViewSelectorsProps = {
     setIsAscending : (isAscending : boolean) => void;
 }
 
-export function CardViewSelectors({setOrderFactor, setIsAscending} : CardViewSelectorsProps) {
+export function CarSortSelector({setOrderFactor, setIsAscending} : CardViewSelectorsProps) {
     return (
         <>
             <select

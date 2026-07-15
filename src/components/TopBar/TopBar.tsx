@@ -4,11 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import {Show, SignInButton, SignUpButton, UserButton, useUser} from "@clerk/nextjs";
 import { Meilisearch } from "meilisearch";
-import {useEffect, useState} from "react";
+import {Dispatch, SetStateAction, useEffect, useState} from "react";
+import {HamburgerButton} from "@/src/components/HamburgerButton/HamburgerButton";
 
 
 export function TopBar() {
-
 
 
     // const [searchResults, setSearchResults] = useState([]);
@@ -36,9 +36,12 @@ export function TopBar() {
     //     getSearchResults("Blue");
     // }, [])
 
+
     const devNgrok = true;
 
     const { isLoaded, isSignedIn } = useUser();
+
+    const [isOpen, setIsOpen] = useState(false);
 
     if (!isLoaded && !devNgrok) {
         return (
@@ -46,19 +49,19 @@ export function TopBar() {
         )
     }
 
-
     return (
-        <>
-            <div className={`${styles.topbar} h-[22vw] lg:h-[7vw]`}>
-                <Link href={"/"} className={styles.logo} >
+        <div className={"top-0 fixed lg:static z-50 h-[100vh] lg:h-auto pointer-events-none"}>
+            <div className={`${styles.topbar} h-[22vw] lg:h-[7vw] ${isOpen && "border-b border-[#5a5a5a]"} lg:border-0 pointer-events-auto`}>
+
+                <Link href={"/"} className={`${styles.logo} aspect-[1/1.4] h-[28vw] lg:h-[14vw]`} onClick={() => (isOpen && setIsOpen(!isOpen))}>
                     <Image className={styles.logoImage} src={"/jaguarLogo.png"} alt={""} width={150} height={150}/>
                 </Link>
-                <div className={styles.links}>
+                <div className={`${styles.links} hidden lg:flex`}>
                     <Link href={"/new-cars"}> New Cars </Link>
                     <Link href={"/cars"}> All Cars </Link>
                 </div>
 
-                <div className={styles.searchBar}> <p>Search for cars</p> </div>
+                <div className={`${styles.searchBar} hidden lg:flex`}> <p>Search for cars</p> </div>
 
                 {
                     !devNgrok &&
@@ -94,13 +97,20 @@ export function TopBar() {
 
                 }
 
+                <HamburgerButton isOpen={isOpen} setIsOpen={setIsOpen} />
 
 
                 {/*<button className={`${styles.button} right-[10%]`}>*/}
                 {/*    <Image src={"/shopping-bag.png"} className={styles.image} alt={""} width={32} height={32} />*/}
                 {/*</button>*/}
-
             </div>
-        </>
+
+            <div className={` ${styles.linkGroup} absolute ${!isOpen ? "h-0" : "h-full"} w-full flex lg:hidden flex-col items-center justify-start gap-[11vw] bg-[#0e0e0e] pointer-events-auto`}>
+                <div className="mt-[2vw]" />
+                <Link href="/new-cars" onClick={() => setIsOpen(!isOpen)} className={`${styles.linkStyle}`}> New Cars </Link>
+                <Link href="/cars"     onClick={() => setIsOpen(!isOpen)} className={`${styles.linkStyle}`}> All Cars </Link>
+            </div>
+
+        </div>
     );
 }

@@ -22,7 +22,7 @@
 
     .cardDetail {
       opacity: 1;
-      top: 32%;
+      top: calc(10% + 4vw);
     }
 
     .cardPrice {
@@ -44,9 +44,9 @@
   top: 70%;
   height: 10%;
   width: 80%;
-  font-weight: bold;
-  font-size: 28px;
-  text-shadow: #0a0a0a 0 0 15px;
+
+  font-size: 2.4vw;
+  text-shadow: #0a0a0a 0 0 5px;
 
   transition: all 0.2s;
 }
@@ -57,13 +57,13 @@
   left: 10%;
   opacity: 0;
   height: 25%;
-  width: 60%;
+  width: 80%;
   text-shadow: #0a0a0a 0 0 15px;
 
 
-  font-size: 22px;
+  font-size: 1.5vw;
   font-weight: 500;
-  line-height: 130%;
+  line-height: 150%;
 
   will-change: top;
 

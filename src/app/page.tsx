@@ -1,6 +1,6 @@
 import {InfoCard} from "@/src/components/InfoCard/InfoCard";
 import {PageFooter} from "@/src/components/PageFooter/PageFooter";
-import {LandingVideo} from "@/src/components/LandingImage/LandingVideo";
+import {LandingVideo} from "@/src/components/LandingVideo/LandingVideo";
 
 export default function Home()
 {
@@ -9,7 +9,7 @@ export default function Home()
 
             <LandingVideo />
 
-            <div className={"grid grid-cols-2 mt-10"}>
+            <div className={"grid grid-cols-1 lg:grid-cols-2 mt-10"}>
                 <InfoCard imagePath={'/luxcar.webp'} title={"Best Quality"} description={"All the cars are made from the best materials and decorated with the most premium additions"} />
                 <InfoCard imagePath={'/cheapcar.webp'} title={"Best Price"} description={"All the cars are made from the best materials and decorated with the most premium additions"} />
                 <InfoCard imagePath={'/car-painting.jpg'} title={"Best Care"} description={"All the cars are made from the best materials and decorated with the most premium additions"} />

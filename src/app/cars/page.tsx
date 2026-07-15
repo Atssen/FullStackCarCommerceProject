@@ -6,7 +6,7 @@ import Masonry from "react-masonry-css";
 import {FiltersBox} from "@/src/components/FiltersBox/FiltersBox";
 import {CarsSkeleton} from "@/src/components/CarsSkeleton/CarsSkeleton";
 import {OrderFactors} from "@/src/enums/orderFactors";
-import {CardViewSelectors} from "@/src/components/CardViewSelectors/CardViewSelectors";
+import {CarSortSelector} from "@/src/components/CardViewSelectors/CarSortSelector";
 
 export default function Cars() {
 
@@ -90,7 +90,7 @@ export default function Cars() {
     };
 
       return (
-        <div className="flex font-sans gap-[5%]">
+        <div className="flex gap-[5%]">
 
             <FiltersBox priceRange={priceRange} setPriceRange={setPriceRange} fetchData={fetchData} />
 
@@ -98,7 +98,7 @@ export default function Cars() {
                 <CarsSkeleton />
             ) : (
                 <div className={"flex flex-col items-end"}>
-                    <CardViewSelectors setOrderFactor={setOrderFactor} setIsAscending={setIsAscending} />
+                    <CarSortSelector setOrderFactor={setOrderFactor} setIsAscending={setIsAscending} />
 
                     <Masonry
                         breakpointCols={breakpointColumnsObj}
