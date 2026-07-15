@@ -7,6 +7,7 @@ import {SignupProvider} from "@/utils/functions/signUpStore";
 import { ClerkProvider} from '@clerk/nextjs'
 import {dark} from '@clerk/ui/themes'
 import localFont from 'next/font/local';
+import {PageFooter} from "@/src/components/PageFooter/PageFooter";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -49,6 +50,7 @@ export default function RootLayout({children} : {children: ReactNode})
               <Toaster theme={"dark"} duration={2000}/>
               <div className="mt-[22vw] lg:mt-0" />
               {children}
+              <PageFooter />
           </SignupProvider>
         </ClerkProvider>
       </body>

@@ -105,7 +105,7 @@ export function TopBar() {
                 {/*</button>*/}
             </div>
 
-            <div className={` ${styles.linkGroup} absolute ${!isOpen ? "h-0" : "h-full"} w-full flex lg:hidden flex-col items-center justify-start gap-[11vw] bg-[#0e0e0e] pointer-events-auto`}>
+            <div className={` ${styles.linkGroup} absolute ${!isOpen ? "h-0" : "h-full"} w-full flex lg:hidden flex-col items-center justify-start gap-[11vw] bg-[#0e0e0e]`}>
                 <div className="mt-[2vw]" />
                 <Link href="/new-cars" onClick={() => setIsOpen(!isOpen)} className={`${styles.linkStyle}`}> New Cars </Link>
                 <Link href="/cars"     onClick={() => setIsOpen(!isOpen)} className={`${styles.linkStyle}`}> All Cars </Link>

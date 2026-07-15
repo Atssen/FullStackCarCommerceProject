@@ -53,7 +53,7 @@ export function FiltersBox({priceRange, setPriceRange, fetchData} : FiltersBoxPr
                 disableSwap
             />
 
-            <p> ${priceRange[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}  -  ${priceRange[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}</p>
+            <p className={"mt-[1vw]"}> ${priceRange[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}  -  ${priceRange[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}</p>
 
             <button className={styles.button} onClick={fetchData}> Apply Filters </button>
         </div>

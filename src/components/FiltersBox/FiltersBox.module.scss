@@ -1,22 +1,20 @@
 .box{
-  width: 25%;
-  height: auto;
+  display: flex;
+  height: 100%;
+  width: 100%;
   border: #474747 1px solid;
   border-radius: 5px;
-  margin-left: 5%;
-  margin-top: 4%;
-  align-self: flex-start;
-  padding: 1%;
-  display: flex;
+  padding: 10%;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .button{
-  height: 15%;
+  height: 11vw;
   aspect-ratio: 2/1;
   background-color: rgb(255, 255, 255);
-  border-radius: 15px;
+  border-radius: 1vw;
   padding: 1px 8px;
   margin-top: 20px;
   color: black;

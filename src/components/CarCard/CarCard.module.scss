@@ -1,86 +1,110 @@
-.card{
+.card {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #151515;
   margin: 1.6vw;
-  //border-radius: 1.5rem;
   overflow: hidden;
   transition: all 0.2s;
   position: relative;
 
-  &:hover {
-    cursor: pointer;
+  @media (min-width: 1024px) {
+    &:hover {
+      cursor: pointer;
 
-    .cardTitle {
-      top: 10%;
-    }
+      .cardTitle {
+        top: 10%;
+      }
 
-    .cardImage {
-      filter: brightness(0.4) blur(5px);
-    }
+      .cardImage {
+        filter: brightness(0.4) blur(5px);
+      }
 
-    .cardDetail {
-      opacity: 1;
-      top: calc(10% + 4vw);
-    }
+      .cardDetail {
+        opacity: 1;
+        top: calc(10% + 4vw);
+      }
 
-    .cardPrice {
-      opacity: 1;
-      top: 75%;
+      .cardPrice {
+        opacity: 1;
+        top: 75%;
+      }
     }
   }
-}
 
-.cardImage{
-  height: 100%;
-  width: 35vw;
+  .cardImage {
+    height: 100%;
 
-  transition: all 0.2s;
-}
+    transition: all 0.2s;
+  }
 
-.cardTitle{
-  position: absolute;
-  top: 70%;
-  height: 10%;
-  width: 80%;
+  .cardTitle {
+    position: absolute;
 
-  font-size: 2.4vw;
-  text-shadow: #0a0a0a 0 0 5px;
+    height: 10%;
+    width: 80%;
 
-  transition: all 0.2s;
-}
+    text-shadow:
+            #0a0a0a 0 0 5px,
+            #0a0a0a 0 0 5px;
 
-.cardDetail{
-  position: absolute;
-  top: 100%;
-  left: 10%;
-  opacity: 0;
-  height: 25%;
-  width: 80%;
-  text-shadow: #0a0a0a 0 0 15px;
+    transition: all 0.2s;
+
+    font-size: 7.4vw;
+
+    left: 3%;
+    top: 0;
+    bottom: 90%;
+
+    @media (min-width: 1024px) {
+      top: 70%;
+      bottom: 0;
+      font-size: 2.4vw;
+      left: auto;
+    }
+
+  }
+
+  .cardDetail {
+    position: absolute;
+    top: 100%;
+    left: 10%;
+    opacity: 0;
+    height: 25%;
+    width: 80%;
+    text-shadow: #0a0a0a 0 0 15px;
 
 
-  font-size: 1.5vw;
-  font-weight: 500;
-  line-height: 150%;
+    font-size: 1.5vw;
+    font-weight: 500;
+    line-height: 150%;
 
-  will-change: top;
+    will-change: top;
 
-  transition: all 0.2s;
-}
+    transition: all 0.2s;
+  }
 
-.cardPrice{
-  position: absolute;
-  top: 100%;
-  opacity: 0;
-  height: 25%;
-  width: 80%;
-  text-shadow: #0a0a0a 0 0 15px;
-  text-align: right;
-  font-size: x-large;
-  font-weight: bold;
+  .cardPrice {
+    position: absolute;
 
-  transition: all 0.2s;
+    height: 25%;
+    width: 80%;
+    text-shadow:
+            #0a0a0a 0 0 5px,
+            #0a0a0a 0 0 5px;
+    text-align: right;
+    font-size: x-large;
+    font-weight: bold;
+
+    transition: all 0.2s;
+
+    opacity: 1;
+    top: 75%;
+
+    @media (min-width: 1024px) {
+      opacity: 0;
+      top: 100%;
+    }
+  }
 }
 

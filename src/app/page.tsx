@@ -1,5 +1,4 @@
 import {InfoCard} from "@/src/components/InfoCard/InfoCard";
-import {PageFooter} from "@/src/components/PageFooter/PageFooter";
 import {LandingVideo} from "@/src/components/LandingVideo/LandingVideo";
 
 export default function Home()
@@ -15,8 +14,6 @@ export default function Home()
                 <InfoCard imagePath={'/car-painting.jpg'} title={"Best Care"} description={"All the cars are made from the best materials and decorated with the most premium additions"} />
                 <InfoCard imagePath={'/Customer-Service-Call-Center.webp'} title={"Best Support"} description={"All the cars are made from the best materials and decorated with the most premium additions"} />
             </div>
-
-            <PageFooter />
 
         </div>
     )

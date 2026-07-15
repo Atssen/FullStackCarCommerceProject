@@ -7,6 +7,7 @@ import {FiltersBox} from "@/src/components/FiltersBox/FiltersBox";
 import {CarsSkeleton} from "@/src/components/CarsSkeleton/CarsSkeleton";
 import {OrderFactors} from "@/src/enums/orderFactors";
 import {CarSortSelector} from "@/src/components/CardViewSelectors/CarSortSelector";
+import {ShoppingSidebar} from "@/src/components/ShoppingSidebar/ShoppingSidebar";
 
 export default function Cars() {
 
@@ -86,34 +87,43 @@ export default function Cars() {
 
 
     const breakpointColumnsObj = {
-        default: 2,768: 1
+        default: 2, 768: 1
     };
 
       return (
-        <div className="flex gap-[5%]">
+          <div className="flex gap-[5%]">
 
-            <FiltersBox priceRange={priceRange} setPriceRange={setPriceRange} fetchData={fetchData} />
+              <div className={`contents flex lg:hidden`}>
+                <ShoppingSidebar/>
+              </div>
 
-            {loading ? (
-                <CarsSkeleton />
-            ) : (
-                <div className={"flex flex-col items-end"}>
-                    <CarSortSelector setOrderFactor={setOrderFactor} setIsAscending={setIsAscending} />
 
-                    <Masonry
-                        breakpointCols={breakpointColumnsObj}
-                        className="flex"
-                        columnClassName="flex flex-col"
-                    >
-                        {data.map((item: Car) => (
-                            <div key={item.id}>
-                                <CarCard {...item} />
-                            </div>
-                        ))}
-                    </Masonry>
-                </div>
-            )}
+              <div className={`hidden lg:block w-[25vw] h-[13vw] ml-[5%] mt-[4%] self-start`}>
+                <FiltersBox priceRange={priceRange} setPriceRange={setPriceRange} fetchData={fetchData}/>
+              </div>
 
-        </div>
+              <div className={"flex flex-col items-end"}>
+                  <CarSortSelector setOrderFactor={setOrderFactor} setIsAscending={setIsAscending}/>
+
+                  {loading ? (
+                      <CarsSkeleton/>
+                  ) : (
+                      <div>
+                          <Masonry
+                              breakpointCols={breakpointColumnsObj}
+                              className="flex"
+                              columnClassName="flex flex-col"
+                          >
+                              {data.map((item: Car) => (
+                                  <div key={item.id}>
+                                      <CarCard {...item} />
+                                  </div>
+                              ))}
+                          </Masonry>
+                      </div>
+                  )}
+              </div>
+
+          </div>
       );
 }
