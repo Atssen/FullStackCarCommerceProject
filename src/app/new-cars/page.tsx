@@ -14,11 +14,11 @@ export default function NewCars()
         const { data, error } = await supabase
             .from('cars')
             .select('*')
+            .order('created_at', { ascending: false })
+            .limit(10);
 
         if (error) console.error(error);
         if (!data) throw new Error("No such car found");
-
-        // console.log(data);
 
         setLoading(false);
 

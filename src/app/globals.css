@@ -47,7 +47,11 @@ body[style*="padding-right"] {
 .cl-cardBox {
   margin-top: 4vh;
   align-self: center;
-  height: 35vw;
+  height: 75vh;
+
+  @media (min-width: 1024px) {
+    height: 35vw;
+  }
 }
 
 button{

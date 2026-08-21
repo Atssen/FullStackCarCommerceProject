@@ -1,9 +1,10 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { useLayoutEffect, useRef, useState } from "react";
 import styles from "./Card.module.scss";
 import type {CardData} from "../ShowcaseCardCarousel";
-
-
+import {useRouter} from "next/navigation";
 
 type Props = {
     variant: string;
@@ -26,11 +27,14 @@ export function Card({
         isFirstRender.current = false;
     }, []);
 
+    const router = useRouter();
+
     return (
         <motion.div
             className={styles.card}
             variants={variants}
             animate={variant}
+            onClick={() => router.push("/cars/" + data.id.toString())}
             style={{
                 visibility: ready ? "visible" : "hidden",
             }}

@@ -11,7 +11,7 @@ export function CarSortSelector({setOrderFactor, setIsAscending} : CardViewSelec
     return (
         <>
             <select
-                className={`${styles.orderSelection} hidden lg:flex`}
+                className={styles.orderSelection}
                 onChange={(e) => {
                     const value = e.target.value;
 

@@ -78,37 +78,54 @@
       display: block;
     }
   }
-
-  .signButtonsContainer{
-    display: flex;
-    position: absolute;
-    height: 100%;
-    align-items: center;
-    right: 5%;
-    gap: 2vw;
-  }
-
-  .signButton{
-    background-color: #151515;
-    box-shadow: rgba(0, 0, 0, 0.06) 0 0 15px 15px;
-    border-radius: 1vw;
-    height: 40%;
-    aspect-ratio: 3/1;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-
-    transition: all 0.2s ease-in-out; //add this to tailwind and such we gonna make it dynamic
-  }
 }
 
 .linkGroup{
   overflow: hidden;
   transition: all ease-in-out 0.3s;
-  pointer-events: none;
 }
 
 .linkStyle {
-  pointer-events: auto;
   font-size: xx-large;
+}
+
+.signButtonsContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: absolute;
+  top: 60vh;
+  gap: 1vh;
+
+
+  @media (min-width: 1024px) {
+    position: absolute;
+    flex-direction: row;
+    right: 5%;
+    top: auto;
+    gap: 2vw;
+  }
+}
+
+.signButton{
+  background-color: #151515;
+  box-shadow: rgba(0, 0, 0, 0.06) 0 0 15px 15px;
+  border-radius: 1vw;
+  height: 12vw;
+  aspect-ratio: 3/1;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+
+  font-size: larger;
+  border: white solid 1px;
+
+  @media (min-width: 1024px) {
+    height: 40%;
+    font-size: 1.4vw;
+    border: none;
+  }
+
+  transition: all 0.2s ease-in-out; //add this to tailwind and such we gonna make it dynamic
 }

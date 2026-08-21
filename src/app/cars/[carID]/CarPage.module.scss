@@ -1,66 +1,127 @@
 .carGrid{
-  display: grid;
-  grid-template-columns: repeat(5, 1fr); /* REQUIRED */
-  grid-template-rows: repeat(4, 1fr);
-  justify-items: stretch;
-  align-items: stretch;
-  height: 35vw;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+
   gap: 1rem;
   margin: 2vw;
 
-  grid-template-areas:
-    "carImage carImage carImage carDetails carDetails"
-    "carImage carImage carImage carDetails carDetails"
-    "carImage carImage carImage carDetails carDetails"
-    "carTitle carTitle carTitle carBuy     carBuy ";
+  @media (min-width: 1024px) {
+    height: 35vw;
+
+    display: grid;
+
+    justify-items: stretch;
+    align-items: stretch;
+
+    grid-template-columns: repeat(5, 1fr); /* REQUIRED */
+    grid-template-rows: repeat(4, 1fr);
+
+    grid-template-areas:
+      "carImage carImage carImage carDetails carDetails"
+      "carImage carImage carImage carDetails carDetails"
+      "carImage carImage carImage carDetails carDetails"
+      "carTitle carTitle carTitle carBuy     carBuy ";
+  }
+
 }
 
 .titleSection{
   width: 100%;
-  grid-area: carTitle;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    grid-area: carTitle;
+  }
 }
 
 .carTitle{
   text-align: center;
-  font-weight: bold;
-  font-size: 3vw;
+  font-size: 5vh;
   width: 100%;
+
+  @media (min-width: 1024px) {
+    font-size: 3vw;
+  }
 }
 
 .carImage{
-  width: 90%;
-  justify-self: center;
-  grid-area: carImage;
-}
-
-.carDetails{
-  width: 70%;
-  height: 80%;
-  grid-area: carDetails;
-  text-align: center;
-  font-weight: 500;
-  font-size: 2vw;
+  object-fit: contain;
   align-self: center;
   justify-self: center;
+}
+
+.imageContainer {
+  position: relative;
+
+  width: 100%;
+  height: 40vh;
+
+  @media (min-width: 1024px) {
+    height: 100%;
+    width: 100%;
+    grid-area: carImage;
+  }
+}
+
+
+.carDetails{
+  margin-top: 22vh;
+  margin-bottom: 11vh;
+  width: 70%;
+  height: auto;
+  text-align: center;
+  font-weight: 500;
+  font-size: 6vw;
+  align-self: center;
+
+  @media (min-width: 1024px) {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 2vw;
+    height: 80%;
+    grid-area: carDetails;
+    align-self: center;
+    justify-self: center;
+  }
 }
 
 .carPrice{
   box-sizing: border-box;
   width: 100%;
-  text-align: right;
+  text-align: center;
   padding-right: 5vw;
-  font-weight: 600;
-  font-size: 2vw;
+  font-size: 3.6vh;
+
+  @media (min-width: 1024px) {
+    text-align: right;
+    font-size: 2vw;
+  }
+}
+
+.arrow{
+  position: relative;
+  width: 5vw;
+  height: 5vw;
+  align-self: center;;
+
+  img{
+    animation: hovering-indicate 0.9s ease-in-out infinite alternate;
+  }
 }
 
 .titleSkeleton {
   background-color: #151515;
   border-radius: 1.5rem;
   width: 100%;
-  grid-area: carTitle;
+
+  @media (min-width: 1024px) {
+    grid-area: carTitle;
+  }
 
   animation: glow-pulse 1s ease-in-out infinite;
 }
@@ -69,7 +130,10 @@
   background-color: #151515;
   border-radius: 1.5rem;
   width: 100%;
-  grid-area: carImage;
+
+  @media (min-width: 1024px) {
+    grid-area: carImage;
+  }
 
   animation: glow-pulse 1s ease-in-out infinite;
 }
@@ -78,7 +142,10 @@
   background-color: #151515;
   border-radius: 1.5rem;
   width: 100%;
-  grid-area: carDetails;
+
+  @media (min-width: 1024px) {
+    grid-area: carDetails;
+  }
 
   animation: glow-pulse 1s ease-in-out infinite;
 }
@@ -87,20 +154,32 @@
   background-color: #151515;
   border-radius: 1.5rem;
   width: 100%;
-  grid-area: carBuy;
+
+  @media (min-width: 1024px) {
+    grid-area: carBuy;
+  }
 
   animation: glow-pulse 1s ease-in-out infinite;
 }
 
 .button{
-  background-color: #1e1e1e;
-  height: 50%;
-  aspect-ratio: 6/1;
-  margin: auto auto 7%;
   cursor: pointer;
+  background-color: #8c0000;
+
+  height: 11vw;
+  aspect-ratio: 3/1;
+  margin: auto auto 7%;
   font-weight: 500;
-  font-size: 1.5vw;
-  grid-area: carBuy;
+  font-size: 4vw;
+
+  @media (min-width: 1024px) {
+    font-weight: 500;
+    font-size: 1.5vw;
+    height: 50%;
+    aspect-ratio: 6/1;
+    margin: auto auto 7%;
+    grid-area: carBuy;
+  }
 
   &:hover{
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 1);
@@ -118,5 +197,15 @@
 
   100%{
     filter: brightness(0);
+  }
+}
+
+@keyframes hovering-indicate {
+  0%{
+    margin-top: 1vh;
+  }
+
+  100%{
+    margin-top: 2vh;
   }
 }

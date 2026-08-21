@@ -38,9 +38,17 @@ export default function CarPage({ params }: { params: Promise<Params> }) {
         fetchData();
     }, []);
 
+
+    const scroll = () => {
+        window.scrollBy({
+            top: 500,
+            behavior: "smooth",
+        });
+    };
+
     return(
         <>
-            <div className={styles.carGrid}>
+            <div className={` ${styles.carGrid} flex flex-col lg:grid `}>
                 <div className={`${styles.titleSkeleton} ${imageLoading ? "" : "hidden"}`} />
                 <div className={`${styles.imageSkeleton} ${imageLoading ? "" : "hidden"}`} />
                 <div className={`${styles.detailsSkeleton} ${imageLoading ? "" : "hidden"}`} />
@@ -50,6 +58,9 @@ export default function CarPage({ params }: { params: Promise<Params> }) {
                     !dataLoading &&
                     (
                         <>
+                            <div className={styles.imageContainer}>
+                                <Image className={`${styles.carImage} ${imageLoading ? "opacity-0 w-0 h-0" : ""}`} src={data[0].image_path} onLoad={() => setImageLoading(false)} fill alt={""} />
+                            </div>
 
                             <div className={styles.titleSection}>
                                 <div className={`${styles.carTitle} ${imageLoading ? "hidden" : ""}`}>{data[0].name}</div>
@@ -57,9 +68,13 @@ export default function CarPage({ params }: { params: Promise<Params> }) {
                                 <div className={`${styles.carPrice} ${imageLoading ? "hidden" : ""}`}>$ {data[0].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}</div>
                             </div>
 
-                            <Image className={`${styles.carImage} ${imageLoading ? "opacity-0 w-0 h-0" : ""}`} src={data[0].image_path} onLoad={() => setImageLoading(false)} width={500} height={500} alt={""} />
-                            <div className={`${styles.carDetails} ${imageLoading ? "hidden" : ""}`}>{"Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus."}</div>
                             <button className={styles.button}>Buy Now</button>
+
+                            <div className={`lg:hidden ${styles.arrow}`} onClick={scroll}>
+                                <Image src={"/arrow.png"} alt={""} fill className={"invert absolute rotate-90"} ></Image>
+                            </div>
+
+                            <div className={`${styles.carDetails} ${imageLoading ? "hidden" : ""}`}>{"Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus."}</div>
                         </>
                     )
                 }

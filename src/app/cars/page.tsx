@@ -94,7 +94,7 @@ export default function Cars() {
           <div className="flex gap-[5%]">
 
               <div className={`contents flex lg:hidden`}>
-                <ShoppingSidebar/>
+                <ShoppingSidebar priceRange={priceRange} setPriceRange={setPriceRange} fetchData={fetchData} setOrderFactor={setOrderFactor} setIsAscending={setIsAscending}/>
               </div>
 
 
@@ -103,7 +103,9 @@ export default function Cars() {
               </div>
 
               <div className={"flex flex-col items-end"}>
-                  <CarSortSelector setOrderFactor={setOrderFactor} setIsAscending={setIsAscending}/>
+                  <div className={`hidden lg:block w-[15vw] mr-[5%]`}>
+                    <CarSortSelector setOrderFactor={setOrderFactor} setIsAscending={setIsAscending}/>
+                  </div>
 
                   {loading ? (
                       <CarsSkeleton/>

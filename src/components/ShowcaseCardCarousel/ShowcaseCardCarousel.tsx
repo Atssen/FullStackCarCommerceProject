@@ -11,6 +11,7 @@ import {useSwipeable} from "react-swipeable";
 const cardWidth = 70;
 
 export type CardData = {
+    id : number;
     title: string;
     subText: string;
     "bg-img": string;
@@ -135,7 +136,7 @@ export function ShowcaseCardCarousel({carDatas} : {carDatas: Car[]}) {
             hasTriggeredRef.current = false;
         },
 
-        trackMouse: true,
+        trackMouse: false,
         preventScrollOnSwipe: false,
     });
 
@@ -166,6 +167,7 @@ export function ShowcaseCardCarousel({carDatas} : {carDatas: Car[]}) {
                             showItems={id==currentCardId}
                             data={
                                 {
+                                    id : carDatas[id].id,
                                     title : carDatas[id].name,
                                     subText :  carDatas[id].details,
                                     "bg-img" :  carDatas[id].image_path

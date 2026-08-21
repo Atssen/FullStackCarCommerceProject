@@ -37,20 +37,32 @@ export function TopBar() {
     // }, [])
 
 
-    const devNgrok = true;
-
     const { isLoaded, isSignedIn } = useUser();
 
     const [isOpen, setIsOpen] = useState(false);
 
-    if (!isLoaded && !devNgrok) {
+
+
+    useEffect(() => {
+        document.body.style.overflow = isOpen ? "hidden" : "";
+
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [isOpen]);
+
+
+
+    if (!isLoaded) {
         return (
             <div className={"mt-[7vw]"} />
         )
     }
 
+
+
     return (
-        <div className={"top-0 fixed lg:static z-50 h-[100vh] lg:h-auto pointer-events-none"}>
+        <div className={"top-0 fixed lg:static z-10 h-[100vh] lg:h-auto"}>
             <div className={`${styles.topbar} h-[22vw] lg:h-[7vw] ${isOpen && "border-b border-[#5a5a5a]"} lg:border-0 pointer-events-auto`}>
 
                 <Link href={"/"} className={`${styles.logo} aspect-[1/1.4] h-[28vw] lg:h-[14vw]`} onClick={() => (isOpen && setIsOpen(!isOpen))}>
@@ -63,39 +75,35 @@ export function TopBar() {
 
                 <div className={`${styles.searchBar} hidden lg:flex`}> <p>Search for cars</p> </div>
 
-                {
-                    !devNgrok &&
-                    <>
-                        <Show when="signed-out">
-                            <div className={styles.signButtonsContainer}>
-                                <SignInButton mode="modal">
-                                    <button className={`${styles.signButton} right-[5%]`}>
-                                        Sign In
-                                    </button>
-                                </SignInButton>
+                <div className={"hidden lg:flex items-center"}>
+                    <Show when="signed-out">
+                        <div className={styles.signButtonsContainer}>
+                            <SignInButton mode="modal">
+                                <button className={`${styles.signButton} right-[5%]`}>
+                                    Sign In
+                                </button>
+                            </SignInButton>
 
-                                <SignUpButton mode="modal">
-                                    <button className={`${styles.signButton} right-[14%]`}>
-                                        Sign Up
-                                    </button>
-                                </SignUpButton>
-                            </div>
-                        </Show>
-                        <Show when="signed-in">
-                            <div className="absolute right-[5%] scale-150">
-                                <UserButton
-                                    appearance={{
-                                        elements: {
-                                            userButtonAvatarBox:
-                                                "!shadow-none hover:!shadow-none hover:!bg-transparent focus:!bg-transparent",
-                                        },
-                                    }}
-                                />
-                            </div>
-                        </Show>
-                    </>
-
-                }
+                            <SignUpButton mode="modal">
+                                <button className={`${styles.signButton} right-[14%]`}>
+                                    Sign Up
+                                </button>
+                            </SignUpButton>
+                        </div>
+                    </Show>
+                    <Show when="signed-in">
+                        <div className="absolute right-[5%] scale-150">
+                            <UserButton
+                                appearance={{
+                                    elements: {
+                                        userButtonAvatarBox:
+                                            "!shadow-none hover:!shadow-none hover:!bg-transparent focus:!bg-transparent",
+                                    },
+                                }}
+                            />
+                        </div>
+                    </Show>
+                </div>
 
                 <HamburgerButton isOpen={isOpen} setIsOpen={setIsOpen} />
 
@@ -105,10 +113,55 @@ export function TopBar() {
                 {/*</button>*/}
             </div>
 
-            <div className={` ${styles.linkGroup} absolute ${!isOpen ? "h-0" : "h-full"} w-full flex lg:hidden flex-col items-center justify-start gap-[11vw] bg-[#0e0e0e]`}>
+            <div className={`
+                ${styles.linkGroup}
+                fixed
+                top-[22vw]
+                left-0
+                w-full
+                ${!isOpen ? "h-0" : "h-[calc(100vh-22vw)]"}
+                flex
+                lg:hidden
+                flex-col
+                items-center
+                justify-start
+                gap-[11vw]
+                bg-[#0e0e0e]
+                z-20 `
+            }>
                 <div className="mt-[2vw]" />
                 <Link href="/new-cars" onClick={() => setIsOpen(!isOpen)} className={`${styles.linkStyle}`}> New Cars </Link>
                 <Link href="/cars"     onClick={() => setIsOpen(!isOpen)} className={`${styles.linkStyle}`}> All Cars </Link>
+
+                <Show when="signed-out">
+                    <div className={styles.signButtonsContainer}>
+                        <SignInButton mode="modal">
+                            <button className={`${styles.signButton}`}>
+                                Sign In
+                            </button>
+                        </SignInButton>
+
+                        <SignUpButton mode="modal">
+                            <button className={`${styles.signButton}`}>
+                                Sign Up
+                            </button>
+                        </SignUpButton>
+                    </div>
+                </Show>
+
+                <Show when="signed-in">
+                    <div className="absolute top-[60vh] scale-[3]">
+                        <UserButton
+                            appearance={{
+                                elements: {
+                                    userButtonPopoverCard: "!left-1/2 !-translate-x-1/2",
+                                    userButtonAvatarBox:
+                                        "!shadow-none hover:!shadow-none hover:!bg-transparent focus:!bg-transparent",
+                                },
+                            }}
+                        />
+                    </div>
+                </Show>
             </div>
 
         </div>
