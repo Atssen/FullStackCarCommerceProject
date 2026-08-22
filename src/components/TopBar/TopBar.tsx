@@ -62,7 +62,7 @@ export function TopBar() {
 
 
     return (
-        <div className={"top-0 fixed lg:static z-10 h-[100vh] lg:h-auto"}>
+        <div className={"top-0 fixed lg:static z-20"}>
             <div className={`${styles.topbar} h-[22vw] lg:h-[7vw] ${isOpen && "border-b border-[#5a5a5a]"} lg:border-0 pointer-events-auto`}>
 
                 <Link href={"/"} className={`${styles.logo} aspect-[1/1.4] h-[28vw] lg:h-[14vw]`} onClick={() => (isOpen && setIsOpen(!isOpen))}>
@@ -105,6 +105,20 @@ export function TopBar() {
                     </Show>
                 </div>
 
+                <Show when="signed-in">
+                    <div className="flex lg:hidden absolute right-[5%] scale-[2]">
+                        <UserButton
+                            appearance={{
+                                elements: {
+                                    userButtonPopoverCard: "!left-1/2 !-translate-x-1/2",
+                                    userButtonAvatarBox:
+                                        "!shadow-none hover:!shadow-none hover:!bg-transparent focus:!bg-transparent",
+                                },
+                            }}
+                        />
+                    </div>
+                </Show>
+
                 <HamburgerButton isOpen={isOpen} setIsOpen={setIsOpen} />
 
 
@@ -146,20 +160,6 @@ export function TopBar() {
                                 Sign Up
                             </button>
                         </SignUpButton>
-                    </div>
-                </Show>
-
-                <Show when="signed-in">
-                    <div className="absolute top-[60vh] scale-[3]">
-                        <UserButton
-                            appearance={{
-                                elements: {
-                                    userButtonPopoverCard: "!left-1/2 !-translate-x-1/2",
-                                    userButtonAvatarBox:
-                                        "!shadow-none hover:!shadow-none hover:!bg-transparent focus:!bg-transparent",
-                                },
-                            }}
-                        />
                     </div>
                 </Show>
             </div>

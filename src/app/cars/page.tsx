@@ -87,7 +87,8 @@ export default function Cars() {
 
 
     const breakpointColumnsObj = {
-        default: 2, 768: 1
+        default: 2,
+        768: 1
     };
 
       return (

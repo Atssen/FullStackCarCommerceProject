@@ -1,10 +1,15 @@
 .cardSkeleton1 {
-  background-color: #151515;
+  background-color: #3a3a3a;
   margin: 1.6vw;
-  //border-radius: 1.5rem;
   position: relative;
-  height: 15vw;
-  width: 30.6vw;
+
+  width: 84vw;
+
+  aspect-ratio: 2/1;
+
+  @media (min-width: 1024px) {
+    width: 30vw;
+  }
 
   animation: glow-pulse 1s ease-in-out infinite;
 }

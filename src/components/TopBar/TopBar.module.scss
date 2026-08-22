@@ -7,11 +7,16 @@
   box-sizing: content-box;
 
   .logo{
-    margin-left: 2%;
-
     .logoImage{
       height: 100%;
       width: 100%;
+    }
+
+    margin-left: auto;
+    margin-right: auto;
+
+    @media (min-width: 1024px) {
+      margin-left: 2%;
     }
   }
 

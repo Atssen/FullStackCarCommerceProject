@@ -17,7 +17,7 @@ export function ShoppingSidebar({priceRange, setPriceRange, fetchData, setOrderF
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className={"flex fixed h-full z-40"}>
+        <div className={"flex fixed h-full z-10"}>
             <div className={`relative h-full  ${isOpen ? "w-[70vw]" : "w-[0vw]"} bg-black transition-all duration-300 ease-in-out overflow-hidden flex flex-col items-center`}>
                 <div className={`h-15vw] w-[60vw]`}>
                     <div className={`h-[45vw] w-[60vw] mt-[5vw]`}>
