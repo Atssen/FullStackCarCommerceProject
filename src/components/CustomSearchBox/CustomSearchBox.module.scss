@@ -1,0 +1,14 @@
+.box{
+  width: 60vw;
+  height: 10vw;
+  border-radius: 0.8vw;
+  border: 0.13vw solid #474747;
+
+  @media (min-width: 1024px) {
+    width: 100%;
+    height: auto;
+    border: 0.13vw solid #474747
+
+  ;
+  }
+}

@@ -3,6 +3,7 @@
 import { ShowcaseCardCarousel } from "@/src/components/ShowcaseCardCarousel/ShowcaseCardCarousel";
 import {supabase} from "@/utils/supabase/functions/client";
 import {useEffect, useState} from "react";
+import {MobileShowcaseCardCarousel} from "@/src/components/MobileShowcaseCardCarousel/MobileShowcaseCardCarousel";
 
 
 export default function NewCars()
@@ -34,8 +35,13 @@ export default function NewCars()
 
 
     return (
-        <div>
-            {!loading && <ShowcaseCardCarousel carDatas={carDatas}/>}
-        </div>
+        <>
+            {!loading &&
+                <div>
+                    <ShowcaseCardCarousel carDatas={carDatas}/>
+                    <MobileShowcaseCardCarousel carDatas={carDatas}/>
+                </div>
+            }
+        </>
     )
 }

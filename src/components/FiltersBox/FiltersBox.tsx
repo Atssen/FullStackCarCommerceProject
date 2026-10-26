@@ -1,23 +1,23 @@
 import styles from "./FiltersBox.module.scss";
 import Slider from '@mui/material/Slider';
-import {Dispatch, SetStateAction} from "react";
+import {Dispatch, SetStateAction, useEffect, useState} from "react";
 import {OrderFactors} from "@/src/enums/orderFactors";
 
 type FiltersBoxProps = {
-    priceRange : number[];
     setPriceRange : (priceRange : number[]) => void;
-    fetchData : () => Promise<void>;
 }
 
 const minDistance = 10000;
 
-export function FiltersBox({priceRange, setPriceRange, fetchData} : FiltersBoxProps) {
+export function FiltersBox({setPriceRange} : FiltersBoxProps) {
+
+    const [localPriceRange, setLocalPriceRange] = useState<number[]>([20000, 50000]);
 
     const handleChange = (event: Event, newValue: number[], activeThumb: number) => {
         if (activeThumb === 0) {
-            setPriceRange([Math.min(newValue[0], priceRange[1] - minDistance), priceRange[1]]);
+            setLocalPriceRange([Math.min(newValue[0], localPriceRange[1] - minDistance), localPriceRange[1]]);
         } else {
-            setPriceRange([priceRange[0], Math.max(newValue[1], priceRange[0] + minDistance)]);
+            setLocalPriceRange([localPriceRange[0], Math.max(newValue[1], localPriceRange[0] + minDistance)]);
         }
     };
 
@@ -41,7 +41,7 @@ export function FiltersBox({priceRange, setPriceRange, fetchData} : FiltersBoxPr
                         backgroundColor: '#373737',
                     },
                 }}
-                value={priceRange}
+                value={localPriceRange}
                 onChange={handleChange}
                 valueLabelDisplay="auto"
                 valueLabelFormat={(val) =>
@@ -53,9 +53,9 @@ export function FiltersBox({priceRange, setPriceRange, fetchData} : FiltersBoxPr
                 disableSwap
             />
 
-            <p className={"mt-[1vw]"}> $ {priceRange[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}  -  $ {priceRange[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}</p>
+            <p className={"mt-[1vw]"}> $ {localPriceRange[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}  -  $ {localPriceRange[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}</p>
 
-            <button className={styles.button} onClick={fetchData}> Apply Filters </button>
+            <button className={styles.button} onClick={() => setPriceRange(localPriceRange)}> Apply Filters </button>
         </div>
     );
 }

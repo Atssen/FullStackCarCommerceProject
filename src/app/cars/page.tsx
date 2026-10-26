@@ -1,90 +1,59 @@
 "use client"
-import {supabase} from "@/utils/supabase/functions/client";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {CarCard} from "@/src/components/CarCard/CarCard";
 import Masonry from "react-masonry-css";
 import {FiltersBox} from "@/src/components/FiltersBox/FiltersBox";
-import {CarsSkeleton} from "@/src/components/CarsSkeleton/CarsSkeleton";
-import {OrderFactors} from "@/src/enums/orderFactors";
-import {CarSortSelector} from "@/src/components/CardViewSelectors/CarSortSelector";
-import {ShoppingSidebar} from "@/src/components/ShoppingSidebar/ShoppingSidebar";
+import {instantMeiliSearch} from '@meilisearch/instant-meilisearch';
+import {Configure, InstantSearch, useHits} from 'react-instantsearch'
+import Image from "next/image";
+import CustomSearchBox from "@/src/components/CustomSearchBox/CustomSearchBox";
+import {CustomSortByBox} from "@/src/components/CustomSortByBox/CustomSortByBox";
+import sidebarAnim from "./SidebarAnim.module.scss"
+
+
+const { searchClient, setMeiliSearchParams } = instantMeiliSearch(
+    process.env.NEXT_PUBLIC_MEILI_URL!,
+    process.env.NEXT_PUBLIC_MEILI_KEY,
+ {
+     placeholderSearch: true, // default: true.
+     primaryKey: 'id', // default: undefined
+     requestInit: {
+         headers: {
+             'Meili-Include-Metadata': 'true'
+         }
+     }
+ }
+)
+
 
 export default function Cars() {
 
-    const [orderFactor, setOrderFactor] = useState<keyof Car>(OrderFactors.CREATION_DATE as keyof Car);
-    const [isAscending, setIsAscending] = useState<boolean>(true);
-
-
     const [priceRange, setPriceRange] = useState<number[]>([20000, 50000]);
 
-    type OrderOptions = {
-        ascending?: boolean;
-    };
 
-    function orderBy<T>(
-        data: T[],
-        column: keyof T,
-        { ascending = true }: OrderOptions = {}
-    ): T[] {
-        return [...data].sort((a, b) => {
-            const valA = a[column];
-            const valB = b[column];
+    function CustomHits({ hitComponent: HitComponent, ...props }) {
+        const { hits } = useHits(props);
 
-            // Handle null / undefined
-            if (valA == null && valB == null) return 0;
-            if (valA == null) return ascending ? 1 : -1;
-            if (valB == null) return ascending ? -1 : 1;
+        return (
+            <Masonry
+                breakpointCols={breakpointColumnsObj}
+                className="flex"
+                columnClassName="flex flex-col"
+            >
+                {
+                    hits.map(
+                        (hit) =>
+                            (
+                                <HitComponent key={hit.objectID} hit={hit} />
+                            )
+                    )
 
-            // Numbers
-            if (typeof valA === "number" && typeof valB === "number") {
-                return ascending ? valA - valB : valB - valA;
-            }
-
-            // Dates (ISO strings or Date objects)
-            const dateA = new Date(valA as never);
-            const dateB = new Date(valB as never);
-
-            if (!isNaN(dateA.getTime()) && !isNaN(dateB.getTime())) {
-                return ascending
-                    ? dateA.getTime() - dateB.getTime()
-                    : dateB.getTime() - dateA.getTime();
-            }
-
-            // Strings (fallback)
-            return ascending
-                ? String(valA).localeCompare(String(valB))
-                : String(valB).localeCompare(String(valA));
-        });
+                }
+            </Masonry>
+        );
     }
 
-    async function fetchData() {
-        setLoading(true);
-
-        const { data, error } = await supabase
-            .from('cars')
-            .select('*')
-            .gte('price', priceRange[0])
-            .lte('price', priceRange[1])
-
-        if (error) console.error(error);
-        else setData(orderBy(data, OrderFactors.CREATION_DATE, { ascending: isAscending }));
-
-        console.log(data);
-
-        setLoading(false);
-    }
-
-    const [loading, setLoading] = useState(true);
-    const [data, setData] = useState<Car[]>([]);
-
-    useEffect(() => {
-        setData(orderBy(data, orderFactor, { ascending: isAscending }));
-    }, [orderFactor, isAscending]);
-
-    useEffect(() => {
-        fetchData();
-    }, []);
-
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const breakpointColumnsObj = {
         default: 2,
@@ -94,37 +63,62 @@ export default function Cars() {
       return (
           <div className="flex gap-[5%]">
 
-              <div className={`contents flex lg:hidden`}>
-                <ShoppingSidebar priceRange={priceRange} setPriceRange={setPriceRange} fetchData={fetchData} setOrderFactor={setOrderFactor} setIsAscending={setIsAscending}/>
-              </div>
+              {/*MOBILE*/}
+              <div className={`flex lg:hidden`}>
 
+                  <InstantSearch indexName="cars" searchClient={searchClient}>
+                      <Configure
+                          filters={`price >= ${priceRange[0]} AND price <= ${priceRange[1]}`}
+                      />
+                        <div className={"flex fixed h-full z-10"}>
 
-              <div className={`hidden lg:block w-[25vw] h-[13vw] ml-[5%] mt-[4%] self-start`}>
-                <FiltersBox priceRange={priceRange} setPriceRange={setPriceRange} fetchData={fetchData}/>
-              </div>
-
-              <div className={"flex flex-col items-end"}>
-                  <div className={`hidden lg:block w-[15vw] mr-[5%]`}>
-                    <CarSortSelector setOrderFactor={setOrderFactor} setIsAscending={setIsAscending}/>
-                  </div>
-
-                  {loading ? (
-                      <CarsSkeleton/>
-                  ) : (
-                      <div>
-                          <Masonry
-                              breakpointCols={breakpointColumnsObj}
-                              className="flex"
-                              columnClassName="flex flex-col"
-                          >
-                              {data.map((item: Car) => (
-                                  <div key={item.id}>
-                                      <CarCard {...item} />
+                              <div className={`relative h-full  ${isSidebarOpen ? "w-[70vw]" : "w-[0vw]"} bg-black transition-all duration-300 ease-in-out overflow-hidden flex flex-col items-center`}>
+                                  <div className={`h-15vw] w-[60vw]`}>
+                                      <div className={`h-[45vw] w-[60vw] mt-[5vw]`}>
+                                          <FiltersBox setPriceRange={setPriceRange} />
+                                      </div>
+                                      <div className={`flex flex-col items-center mt-[5vw]`}>
+                                          <CustomSearchBox/>
+                                          <CustomSortByBox/>
+                                      </div>
                                   </div>
-                              ))}
-                          </Masonry>
+                              </div>
+
+                          <div onClick={()=>setIsSidebarOpen(!isSidebarOpen)} className={`relative h-[19vw] aspect-[0.6/1] top-[10vh] rounded-tr-[2vw] rounded-br-[2vw] ${isSidebarOpen ? `bg-[#000000]` : "bg-[#000000B3]"}  content-center transition-all duration-300 ease-in-out`}>
+                              <Image src={"/right-arrow.png"} width={500} height={500} className={`${sidebarAnim.arrow} ${isSidebarOpen ? sidebarAnim.open : ""} w-[80%] aspect-[1/1] invert ml-[10%]`} alt={""} />
+                          </div>
+                        </div>
+                        <CustomHits hitComponent={CarCard}/>
+                  </InstantSearch>
+
+              </div>
+
+
+              {/*LARGE DISPLAY*/}
+              <div className={"hidden lg:flex w-full h-full"}>
+                  <InstantSearch indexName="cars" searchClient={searchClient}>
+
+                      <Configure
+                          filters={`price >= ${priceRange[0]} AND price <= ${priceRange[1]}`}
+                      />
+
+                      <div className={`hidden lg:block w-[25vw] h-[13vw] ml-[5%] mt-[4%] self-start`}>
+                        <FiltersBox setPriceRange={setPriceRange}/>
                       </div>
-                  )}
+
+
+                      <div>
+                          <div className={`hidden lg:flex w-[97%] mr-[1.2%] mb-[2vw] justify-between`}>
+                              <CustomSearchBox/>
+                              <CustomSortByBox/>
+                          </div>
+
+
+                          <CustomHits hitComponent={CarCard}/>
+
+                          {/*{loading ? <CarsSkeleton/> : <CustomHits hitComponent={CarCard}/>}*/}
+                      </div>
+                  </InstantSearch>
               </div>
 
           </div>

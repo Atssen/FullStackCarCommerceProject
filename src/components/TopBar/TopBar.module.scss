@@ -7,6 +7,10 @@
   box-sizing: content-box;
 
   .logo{
+    display: flex;
+    aspect-ratio: 1/1.11;
+    height: 100%;
+
     .logoImage{
       height: 100%;
       width: 100%;
@@ -16,7 +20,9 @@
     margin-right: auto;
 
     @media (min-width: 1024px) {
-      margin-left: 2%;
+      width: 8vw;
+      height: auto;
+      margin-left: 3%;
     }
   }
 
@@ -111,6 +117,16 @@
     top: auto;
     gap: 2vw;
   }
+}
+
+.searchItemsContainer{
+  position: absolute;
+  top: 7vh;
+  left: 2vh;
+  width: 20vw;
+  background-color: black;
+  text-align: left;
+  border: gray solid 2px;
 }
 
 .signButton{

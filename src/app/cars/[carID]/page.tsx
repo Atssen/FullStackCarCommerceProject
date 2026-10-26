@@ -1,37 +1,53 @@
 "use client"
 
-import {supabase} from "@/utils/supabase/functions/client";
 import {use, useEffect, useState} from "react";
 import Image from "next/image";
 import styles from "./CarPage.module.scss";
+import { Meilisearch } from "meilisearch";
 
 type Params = {
     carID: string;
 };
 
+const client = new Meilisearch({
+    host: process.env.NEXT_PUBLIC_MEILI_URL!,
+    apiKey: process.env.NEXT_PUBLIC_MEILI_KEY
+});
+
 export default function CarPage({ params }: { params: Promise<Params> }) {
 
     const resolvedParams = use(params);
     const id = resolvedParams.carID;
+    const index = client.index("cars");
+
+
 
     async function fetchData() {
+        if (!id) return;
 
-        const { data, error } = await supabase
-            .from('cars')
-            .select('*')
-            .eq('id', id);
+        try {
+            const result = await index.search<Car>("", {
+                filter: `id = ${id}`,
+                limit: 1,
+            });
 
-        if (error) console.error(error)
-        else setData(data)
+            const car = result.hits[0];
 
-        console.log(data);
+            if (!car) {
+                throw new Error();
+            }
 
-        setDataLoading(false);
+            setData(car);
+            setDataLoading(false);
+        }
+        catch (err) {
+            console.error(`Failed to fetch car by ID: ${id}`);
+        }
     }
 
     const [dataLoading, setDataLoading] = useState(true);
     const [imageLoading, setImageLoading] = useState(true);
-    const [data, setData] = useState<Car[]>([]);
+    const [data, setData] = useState<Car>();
 
 
     useEffect(() => {
@@ -55,20 +71,20 @@ export default function CarPage({ params }: { params: Promise<Params> }) {
                 <div className={`${styles.priceSkeleton} ${imageLoading ? "" : "hidden"}`} />
 
                 {
-                    !dataLoading &&
+                    data &&
                     (
                         <>
                             <div className={styles.imageContainer}>
-                                <Image className={`${styles.carImage} ${imageLoading ? "opacity-0 w-0 h-0" : ""}`} src={data[0].image_path} onLoad={() => setImageLoading(false)} fill alt={""} />
+                                <Image className={`${styles.carImage} ${imageLoading ? "opacity-0 w-0 h-0" : ""}`} src={data.image_path} onLoad={() => setImageLoading(false)} fill alt={""} />
                             </div>
 
                             <div className={styles.titleSection}>
-                                <div className={`${styles.carTitle} ${imageLoading ? "hidden" : ""}`}>{data[0].name}</div>
+                                <div className={`${styles.carTitle} ${imageLoading ? "hidden" : ""}`}>{data.name}</div>
 
-                                <div className={`${styles.carPrice} ${imageLoading ? "hidden" : ""}`}>$ {data[0].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}</div>
+                                <div className={`${styles.carPrice} ${imageLoading ? "hidden" : ""}`}>$ {data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}</div>
                             </div>
 
-                            <button className={styles.button}>Buy Now</button>
+                            <button className={`${styles.button} ${imageLoading ? "hidden" : ""}`}>Buy Now</button>
 
                             <div className={`lg:hidden ${styles.arrow}`} onClick={scroll}>
                                 <Image src={"/arrow.png"} alt={""} fill className={"invert absolute rotate-90"} ></Image>

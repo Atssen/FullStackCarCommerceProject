@@ -69,3 +69,10 @@ button{
   box-shadow: none !important;
   border: none;
 }
+
+.ais-Highlight-highlighted {
+  background-color: white; /* Set your preferred highlight color */
+  border-top: white 5px solid;
+  border-bottom: white 5px solid;
+  color: black;
+}

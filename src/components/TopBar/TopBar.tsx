@@ -3,45 +3,15 @@ import styles from "./TopBar.module.scss"
 import Link from "next/link";
 import Image from "next/image";
 import {Show, SignInButton, SignUpButton, UserButton, useUser} from "@clerk/nextjs";
-import { Meilisearch } from "meilisearch";
-import {Dispatch, SetStateAction, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {HamburgerButton} from "@/src/components/HamburgerButton/HamburgerButton";
 
 
 export function TopBar() {
 
-
-    // const [searchResults, setSearchResults] = useState([]);
-    //
-    // const client = new Meilisearch({
-    //     host: "https://meilisearch-production-89d8.up.railway.app",
-    //     apiKey: "6Sm06lvAotaYMT0izLEsSCUOHJ7xvzHU",
-    // });
-    //
-    // const carsIndex = client.index("cars");
-    //
-    // async function getSearchResults(query : string) {
-    //
-    //     const results = await carsIndex.search(query, {
-    //         limit: 20,
-    //         attributesToHighlight: ["name", "details", "tags"],
-    //     });
-    //
-    //     console.log(results.hits);
-    //
-    //     // setSearchResults(results.hits);
-    // }
-    //
-    // useEffect(() => {
-    //     getSearchResults("Blue");
-    // }, [])
-
-
     const { isLoaded, isSignedIn } = useUser();
 
     const [isOpen, setIsOpen] = useState(false);
-
-
 
     useEffect(() => {
         document.body.style.overflow = isOpen ? "hidden" : "";
@@ -61,19 +31,23 @@ export function TopBar() {
 
 
 
+
     return (
         <div className={"top-0 fixed lg:static z-20"}>
             <div className={`${styles.topbar} h-[22vw] lg:h-[7vw] ${isOpen && "border-b border-[#5a5a5a]"} lg:border-0 pointer-events-auto`}>
 
-                <Link href={"/"} className={`${styles.logo} aspect-[1/1.4] h-[28vw] lg:h-[14vw]`} onClick={() => (isOpen && setIsOpen(!isOpen))}>
-                    <Image className={styles.logoImage} src={"/jaguarLogo.png"} alt={""} width={150} height={150}/>
+                <Link href={"/"} className={styles.logo} onClick={() => (isOpen && setIsOpen(!isOpen))}>
+                    <Image className={`${styles.logoImage} invert`} src={"/carLogo.png"} alt={""} width={150} height={150}/>
                 </Link>
                 <div className={`${styles.links} hidden lg:flex`}>
                     <Link href={"/new-cars"}> New Cars </Link>
                     <Link href={"/cars"}> All Cars </Link>
                 </div>
 
-                <div className={`${styles.searchBar} hidden lg:flex`}> <p>Search for cars</p> </div>
+                {/*<div className={`${styles.searchBar} hidden lg:flex`}>*/}
+
+                {/*</div>*/}
+
 
                 <div className={"hidden lg:flex items-center"}>
                     <Show when="signed-out">

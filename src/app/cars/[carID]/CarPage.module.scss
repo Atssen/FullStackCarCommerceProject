@@ -37,15 +37,29 @@
     flex-direction: row;
     grid-area: carTitle;
   }
-}
 
-.carTitle{
-  text-align: center;
-  font-size: 5vh;
-  width: 100%;
+  .carTitle{
+    text-align: center;
+    font-size: 5vh;
+    width: 100%;
 
-  @media (min-width: 1024px) {
-    font-size: 3vw;
+    @media (min-width: 1024px) {
+      font-size: 3vw;
+    }
+  }
+
+  .carPrice{
+    box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+    padding-right: 1vw;
+    font-size: 3.6vh;
+    margin-top: 4vw;
+
+    @media (min-width: 1024px) {
+      text-align: right;
+      font-size: 2vw;
+    }
   }
 }
 
@@ -90,19 +104,6 @@
   }
 }
 
-.carPrice{
-  box-sizing: border-box;
-  width: 100%;
-  text-align: center;
-  padding-right: 5vw;
-  font-size: 3.6vh;
-
-  @media (min-width: 1024px) {
-    text-align: right;
-    font-size: 2vw;
-  }
-}
-
 .arrow{
   position: relative;
   width: 5vw;
@@ -114,54 +115,6 @@
   }
 }
 
-.titleSkeleton {
-  background-color: #151515;
-  border-radius: 1.5rem;
-  width: 100%;
-
-  @media (min-width: 1024px) {
-    grid-area: carTitle;
-  }
-
-  animation: glow-pulse 1s ease-in-out infinite;
-}
-
-.imageSkeleton {
-  background-color: #151515;
-  border-radius: 1.5rem;
-  width: 100%;
-
-  @media (min-width: 1024px) {
-    grid-area: carImage;
-  }
-
-  animation: glow-pulse 1s ease-in-out infinite;
-}
-
-.detailsSkeleton {
-  background-color: #151515;
-  border-radius: 1.5rem;
-  width: 100%;
-
-  @media (min-width: 1024px) {
-    grid-area: carDetails;
-  }
-
-  animation: glow-pulse 1s ease-in-out infinite;
-}
-
-.priceSkeleton {
-  background-color: #151515;
-  border-radius: 1.5rem;
-  width: 100%;
-
-  @media (min-width: 1024px) {
-    grid-area: carBuy;
-  }
-
-  animation: glow-pulse 1s ease-in-out infinite;
-}
-
 .button{
   cursor: pointer;
   background-color: #8c0000;
@@ -171,6 +124,7 @@
   margin: auto auto 7%;
   font-weight: 500;
   font-size: 4vw;
+  margin-top: 4vw;
 
   @media (min-width: 1024px) {
     font-weight: 500;
@@ -186,13 +140,59 @@
   }
 }
 
+
+.titleSkeleton {
+  background-color: #151515;
+  width: 100%;
+
+  @media (min-width: 1024px) {
+    grid-area: carTitle;
+  }
+
+  animation: glow-pulse 1s ease-in-out infinite;
+}
+
+.imageSkeleton {
+  background-color: #151515;
+  width: 100%;
+
+  @media (min-width: 1024px) {
+    grid-area: carImage;
+  }
+
+  animation: glow-pulse 1s ease-in-out infinite;
+}
+
+.detailsSkeleton {
+  background-color: #151515;
+  width: 100%;
+
+  @media (min-width: 1024px) {
+    grid-area: carDetails;
+  }
+
+  animation: glow-pulse 1s ease-in-out infinite;
+}
+
+.priceSkeleton {
+  background-color: #151515;
+  width: 100%;
+
+  @media (min-width: 1024px) {
+    grid-area: carBuy;
+  }
+
+  animation: glow-pulse 1s ease-in-out infinite;
+}
+
+
 @keyframes glow-pulse {
   0%{
     filter: brightness(0);
   }
 
   50%{
-    filter: brightness(1);
+    filter: brightness(3);
   }
 
   100%{

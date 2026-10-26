@@ -3,7 +3,6 @@ import "./globals.css";
 import {TopBar} from "@/src/components/TopBar/TopBar";
 import {ReactNode} from "react";
 import {Toaster} from "sonner";
-import {SignupProvider} from "@/utils/functions/signUpStore";
 import { ClerkProvider} from '@clerk/nextjs'
 import {dark} from '@clerk/ui/themes'
 import localFont from 'next/font/local';
@@ -41,18 +40,13 @@ export default function RootLayout({children} : {children: ReactNode})
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-      <ClerkProvider
-          appearance={{
-              theme: dark,
-          }}>
-          <SignupProvider>
+          <ClerkProvider appearance={{theme: dark,}}>
               <TopBar/>
               <Toaster theme={"dark"} duration={2000}/>
               <div className="mt-[22vw] lg:mt-0" />
               {children}
               <PageFooter />
-          </SignupProvider>
-        </ClerkProvider>
+          </ClerkProvider>
       </body>
     </html>
   );

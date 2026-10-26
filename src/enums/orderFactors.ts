@@ -1,5 +1,5 @@
 export const OrderFactors = Object.freeze({
-    CREATION_DATE: 'created_at',
-    NAME: 'name',
-    PRICE: 'price'
+    NAME: 'name:asc',
+    PRICE_ASC: 'price_asc',
+    PRICE_DESC: 'price_desc'
 });
