@@ -4,7 +4,7 @@ export function LandingVideo() {
     return (
         <>
             <div className="relative w-[100vw] aspect-[1.8/1] lg:w-[66vw] lg:aspect-[1.7/1] mt-2 overflow-hidden ">
-                <video height={500} width={500} src={"/17770564-uhd_3840_2160_24fps.mp4"} autoPlay={true} muted={true} loop={true} disablePictureInPicture={true} controls={false}
+                <video height={500} width={500} src={"/landing_video.mp4"} autoPlay={true} muted={true} loop={true} disablePictureInPicture={true} controls={false}
                        className={"w-full h-full"}/>
 
                 {/*<Image*/}

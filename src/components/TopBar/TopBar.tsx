@@ -40,13 +40,8 @@ export function TopBar() {
                     <Image className={`${styles.logoImage} invert`} src={"/carLogo.png"} alt={""} width={150} height={150}/>
                 </Link>
                 <div className={`${styles.links} hidden lg:flex`}>
-                    <Link href={"/new-cars"}> New Cars </Link>
                     <Link href={"/cars"}> All Cars </Link>
                 </div>
-
-                {/*<div className={`${styles.searchBar} hidden lg:flex`}>*/}
-
-                {/*</div>*/}
 
 
                 <div className={"hidden lg:flex items-center"}>

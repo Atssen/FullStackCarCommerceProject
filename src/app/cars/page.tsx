@@ -25,40 +25,40 @@ const { searchClient, setMeiliSearchParams } = instantMeiliSearch(
  }
 )
 
+const breakpointColumnsObj = {
+    default: 2,
+    768: 1
+};
+
+// @ts-expect-error it is just hitcomponent
+function CustomHits({ hitComponent: HitComponent, ...props }) {
+    const { hits } = useHits(props);
+
+    return (
+        <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="flex"
+            columnClassName="flex flex-col"
+        >
+            {
+                hits.map(
+                    (hit) =>
+                        (
+                            <HitComponent key={hit.objectID} hit={hit} />
+                        )
+                )
+
+            }
+        </Masonry>
+    );
+}
+
 
 export default function Cars() {
 
     const [priceRange, setPriceRange] = useState<number[]>([20000, 50000]);
 
-
-    function CustomHits({ hitComponent: HitComponent, ...props }) {
-        const { hits } = useHits(props);
-
-        return (
-            <Masonry
-                breakpointCols={breakpointColumnsObj}
-                className="flex"
-                columnClassName="flex flex-col"
-            >
-                {
-                    hits.map(
-                        (hit) =>
-                            (
-                                <HitComponent key={hit.objectID} hit={hit} />
-                            )
-                    )
-
-                }
-            </Masonry>
-        );
-    }
-
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-    const breakpointColumnsObj = {
-        default: 2,
-        768: 1
-    };
 
       return (
           <div className="flex gap-[5%]">
@@ -102,19 +102,21 @@ export default function Cars() {
                           filters={`price >= ${priceRange[0]} AND price <= ${priceRange[1]}`}
                       />
 
-                      <div className={`hidden lg:block w-[25vw] h-[13vw] ml-[5%] mt-[4%] self-start`}>
-                        <FiltersBox setPriceRange={setPriceRange}/>
-                      </div>
-
-
                       <div>
-                          <div className={`hidden lg:flex w-[97%] mr-[1.2%] mb-[2vw] justify-between`}>
+                          <div className={`flex w-[68.3vw] ml-[30vw] mb-[1vw] mt-[2vw] justify-between`}>
                               <CustomSearchBox/>
                               <CustomSortByBox/>
                           </div>
 
 
-                          <CustomHits hitComponent={CarCard}/>
+                          <div className={"flex"}>
+                              <div className={`block w-[25vw] h-[13vw] ml-[5%] mt-[-4vw] self-start`}>
+                                <FiltersBox setPriceRange={setPriceRange}/>
+                              </div>
+
+                              <CustomHits hitComponent={CarCard}/>
+                          </div>
+
 
                           {/*{loading ? <CarsSkeleton/> : <CustomHits hitComponent={CarCard}/>}*/}
                       </div>
